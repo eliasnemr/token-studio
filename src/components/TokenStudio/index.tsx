@@ -447,7 +447,6 @@ const TokenStudio = () => {
 
             <form onSubmit={handleSubmit}>
               <>
-              {JSON.stringify(errors)}
                 <div className="flex-1 flex flex-col">
                   {/* Custom Radio Buttons */}
                   <div className="my-3">
