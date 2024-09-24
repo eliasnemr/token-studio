@@ -57,11 +57,6 @@ export const checkFunds = (balance: any[], tokenid: string, amount: number) => {
 };
 
 
-export const isValidURLAll = (urlString: string) => {
-    
-    new URL(urlString);    
-};
-
 export const isValidURLSecureOnly = (urlString: string) => {
     try {
         const url = new URL(urlString);
@@ -107,3 +102,13 @@ export const makeTokenImage = (imageData: string, tokenid: string): string | und
 
     return undefined;
 };
+
+
+export const isValidURLAll = (urlString: string) => {
+    try {
+      new URL(urlString);
+      return true;
+    } catch (error) {
+      return false; // Return false if the URL is invalid
+    }
+  };

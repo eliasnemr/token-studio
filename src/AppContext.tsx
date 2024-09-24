@@ -12,6 +12,11 @@ const AppProvider = ({ children }: IProps) => {
     thousands: '',
 });
 
+const [_transactionSubmitting, setTransactionSubmitting] = useState(false);
+const [_transactionSuccess, setTransactionSuccess] = useState(false);
+const [_transactionPending, setTransactionPending] = useState(false);
+const [_transactionError, setTransactionError] = useState<false | string>(false);
+
   useEffect(() => {
     if (!loaded.current) {
       loaded.current = true;
@@ -28,7 +33,16 @@ const AppProvider = ({ children }: IProps) => {
       value={
         {
           // add some stuff
-          _currencyFormat, setCurrencyFormat
+          _currencyFormat, setCurrencyFormat,
+           // This is a global txn status modal..
+           _transactionSubmitting,
+           setTransactionSubmitting,
+           _transactionSuccess,
+           setTransactionSuccess,
+           _transactionError,
+           setTransactionError,
+           _transactionPending,
+           setTransactionPending,
         }
       }
     >

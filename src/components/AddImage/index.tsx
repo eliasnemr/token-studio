@@ -61,7 +61,7 @@ const AddImage = () => {
             </div>
 
             {formik.errors && formik.errors.url && formik.touched && formik.touched.url && (
-                <p className="text-sm mt-2 dark:text-neutral-300">{formik.errors.url}</p>
+                <p className="text-sm mt-2 dark:text-neutral-300">{formik.errors.url as string}</p>
             )}
 
             <input
