@@ -146,10 +146,14 @@ const TokenStudio = () => {
                 await new Promise((resolve, reject) => {
                   const token = {
                     name: name,
-                    url: url,
+                    url: encodeURIComponent(url),
                     description: description,
                     ticker: ticker,
                     webvalidate: webvalidation,
+                    ...extraMetadata.reduce((acc, { key, value }) => {
+                      acc[key] = value;
+                      return acc;
+                    }, {}),
                   };
 
                   (window as any).MDS.cmd(
@@ -180,7 +184,7 @@ const TokenStudio = () => {
                 await new Promise((resolve, reject) => {
                   const token = {
                     name: name,
-                    url: url,
+                    url: encodeURIComponent(url),
                     description: description,
                     owner: owner,
                     webvalidate: webvalidation,

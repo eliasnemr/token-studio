@@ -1,4 +1,5 @@
-const StudioIcon = ({ fill, size = 22 }: any) => (
+
+const StudioIcon = ({  size = 22 }: any) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         className="fill-white dark:fill-[#1B1B1B]"

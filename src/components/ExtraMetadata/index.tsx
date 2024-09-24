@@ -7,7 +7,7 @@ function ExtraMetadataFields({ values }) {
   const [newValue, setNewValue] = useState("");
 
   const formik: any = useFormikContext();
-  const { setFieldValue, errors, touched } = formik;
+  const { setFieldValue, errors } = formik;
 
   const addMetadata = () => {
     if (newKey && newValue) {

@@ -1,5 +1,8 @@
 
-const WalletIcon = ({fill, size =22}: any) => (
+interface IProps {
+  size: number;
+}
+const WalletIcon = ({size =22}: IProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="fill-none"

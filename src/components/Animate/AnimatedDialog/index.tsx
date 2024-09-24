@@ -53,10 +53,10 @@ const AnimatedDialog = ({
                         item ? (
                             <animated.div
                                 style={styles}
-                                className={`fixed top-0 right-0 left-0 bottom-0 md:grid md:grid-cols-[1fr_minmax(0,_560px)_1fr] md:ml-[240px] z-[22] overflow-y-scroll`}
+                                className={`fixed top-0 right-0 left-0 bottom-0 md:grid md:grid-cols-[1fr_minmax(0,_560px)_1fr] z-[22] overflow-y-scroll`}
                             >
                                 <div />
-                                <div className={`pt-[45px] z-[23] h-full ${extraClass || ''}`}>{children}</div>
+                                <div className={`pt-[54px] z-[23] h-full ${extraClass || ''}`}>{children}</div>
                                 <div />
                             </animated.div>
                         ) : null
@@ -68,7 +68,7 @@ const AnimatedDialog = ({
                 createPortal(
                     <div
                         onClick={dismiss}
-                        className={`fixed backdrop-blur-sm left-0 right-0 top-[54px] bottom-0 z-[21] bg-neutral-200/100 dark:bg-black/90`}
+                        className={`fixed backdrop-blur-sm left-0 right-0 top-0 bottom-0 z-[21] bg-neutral-200/100 dark:bg-black/90`}
                     />,
                     document.body
                 )}
