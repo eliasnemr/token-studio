@@ -1,3 +1,4 @@
+import { makeTokenImage } from "../../utils/functions";
 import useFormatMinimaNumber from "../../utils/useMakeNumber";
 import AnimatePageIn from "../Animate/AnimatePageIn";
 
@@ -12,8 +13,8 @@ const PreviewToken = ({ url, name, amount }: Props) => {
   return (
     <AnimatePageIn display={true}>
       <div className="grid grid-cols-[auto_1fr] items-center bg-white dark:bg-[#1B1B1B] rounded shadow-inner">
-        <div className={`${!url.includes("data:image") ? "w-48 h-48" : "w-12 h-12"} aspect-square overflow-hidden mr-2`}>
-          <img src={url} alt="preview" className="w-full h-full" />
+        <div className={`${!url.includes("data:image") && !url.includes('artimage') ? "w-48 h-48" : "w-12 h-12"} aspect-square overflow-hidden mr-2`}>
+          <img src={url.includes("artimage") ? makeTokenImage(url) : url} alt="preview" className="w-full h-full" />
         </div>
         <div className="overflow-hidden flex flex-col">
           

@@ -146,7 +146,7 @@ const TokenStudio = () => {
                 await new Promise((resolve, reject) => {
                   const token = {
                     name: name,
-                    url: encodeURIComponent(url),
+                    url: url,
                     description: description,
                     ticker: ticker,
                     webvalidate: webvalidation,
@@ -161,7 +161,6 @@ const TokenStudio = () => {
                       token
                     )}" ${burn.length ? "burn:" + burn : ""}`,
                     (resp: any) => {
-                      console.log(resp);
                       if (resp.pending) reject("PENDING");
 
                       if (!resp.status) {
@@ -184,7 +183,7 @@ const TokenStudio = () => {
                 await new Promise((resolve, reject) => {
                   const token = {
                     name: name,
-                    url: encodeURIComponent(url),
+                    url: url,
                     description: description,
                     owner: owner,
                     webvalidate: webvalidation,
@@ -199,7 +198,6 @@ const TokenStudio = () => {
                       token
                     )}" ${burn.length ? "burn:" + burn : ""}`,
                     (resp: any) => {
-                      console.log(resp);
                       if (resp.pending) reject("PENDING");
 
                       if (!resp.status) {
@@ -306,6 +304,12 @@ const TokenStudio = () => {
                       try {
                         if (
                           val.substring(0, "data:image".length) === "data:image"
+                        ) {
+                          return true;
+                        }
+                        
+                        if (
+                          val.substring(0, "<artimage>".length) === "<artimage>"
                         ) {
                           return true;
                         }
@@ -443,6 +447,7 @@ const TokenStudio = () => {
 
             <form onSubmit={handleSubmit}>
               <>
+              {JSON.stringify(errors)}
                 <div className="flex-1 flex flex-col">
                   {/* Custom Radio Buttons */}
                   <div className="my-3">

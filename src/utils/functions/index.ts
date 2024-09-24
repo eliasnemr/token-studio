@@ -82,14 +82,14 @@ export const numberWithCommas = (x: string) => {
  * @param imageData tokens image uri
  * @param tokenid tokens id for reference
  */
-export const makeTokenImage = (imageData: string, tokenid: string): string | undefined => {
+export const makeTokenImage = (imageData: string): string | undefined => {
     let imageUrl;
     try {
         const parser = new DOMParser();
         const doc = parser.parseFromString(imageData, 'application/xml');
         const errorNode = doc.querySelector('parsererror');
         if (errorNode) {
-            console.error('Token does not contain an image', tokenid);
+            console.error('Token does not contain an image');
         } else {
             const imageString = doc.getElementsByTagName('artimage')[0].innerHTML;
             imageUrl = `data:image/jpeg;base64,${imageString}`;
@@ -97,7 +97,7 @@ export const makeTokenImage = (imageData: string, tokenid: string): string | und
 
         return imageUrl;
     } catch (err) {
-        console.error(`Failed to create image data ${tokenid}`, err);
+        console.error(`Failed to create image data`, err);
     }
 
     return undefined;

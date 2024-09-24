@@ -16,13 +16,17 @@ const AddImage = () => {
         }
 
         if (files) {
-            const imageSrc = await handleFileToBase64(files[0]);
-            formik.setFieldValue('url', imageSrc);
-            const blob = base64ToBlob(imageSrc as string);
-            const compressedFile = new File([blob], 'test');
-            setSelectedFile(compressedFile);
-            if (compressedFile.size > 55000) {
-                return formik.setFieldError('url', 'File too large');
+            try {
+                const imageSrc = await handleFileToBase64(files[0]);
+                formik.setFieldValue('url', imageSrc);
+                const blob = base64ToBlob(imageSrc as string);
+                const compressedFile = new File([blob], 'test');
+                setSelectedFile(compressedFile);
+                if (compressedFile.size > 55000) {
+                    return formik.setFieldError('url', 'File too large');
+                }                
+            } catch (error) {
+                //
             }
         }
     };

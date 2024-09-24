@@ -1,6 +1,7 @@
 export const compressImage = async (fileAsUrl: string): Promise<string> => {
     // Extract the MIME type from the base64 string
     const mimeType = fileAsUrl.substring(fileAsUrl.indexOf(":") + 1, fileAsUrl.indexOf(";"));
+
     return new Promise((resolve) => {
         const img = new Image();
         img.src = fileAsUrl;
@@ -9,7 +10,7 @@ export const compressImage = async (fileAsUrl: string): Promise<string> => {
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
-            const MAX_IMAGE_SIZE = 50; // for dat 50K HD resolution
+            const MAX_IMAGE_SIZE = 50; // for that 50K HD resolution
 
             let imageWidth = img.width;
             let imageHeight = img.height;
@@ -34,11 +35,30 @@ export const compressImage = async (fileAsUrl: string): Promise<string> => {
             ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
 
             const quality = 0.7; // Set quality for compression
-            resolve(canvas.toDataURL(mimeType, quality));
+            const compressedImage = canvas.toDataURL(mimeType, quality);
+
+            // Extract the base64 content (the part after the comma)
+            const pureCompressedImage = compressedImage.slice(compressedImage.indexOf(',') + 1);
+
+            // Create an XML structure to hold the base64 image data
+            const xmlString = '<artimage></artimage>';
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+
+            // Insert the base64 image content into the XML structure
+            xmlDoc.firstElementChild!.innerHTML = pureCompressedImage;
+
+            // Serialize the XML back into a string
+            const serializer = new XMLSerializer();
+            const serializedXML = serializer.serializeToString(xmlDoc);
+
+            // Resolve the promise with the serialized XML
+            resolve(serializedXML);
         };
 
         img.onerror = () => {
-            resolve(fileAsUrl); // In case of error, return the original image URL
+            // In case of error, resolve with the original image URL as a fallback
+            resolve(fileAsUrl);
         };
     });
 };
