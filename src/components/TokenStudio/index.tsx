@@ -21,6 +21,9 @@ import WebIcon from "../Icons/WebIcon";
 import FireIcon from "../Icons/FireIcon";
 import ExtraMetadataFields from "../ExtraMetadata";
 import { errorTextStyle } from "../../styles";
+import SecondaryButton from "../SecondaryButton";
+import DoneIcon from "../Icons/DoneIcon";
+import copyToClipboard from "../../utils/copyToClipboard";
 
 const TokenStudio = () => {
   const {
@@ -32,11 +35,15 @@ const TokenStudio = () => {
     setTransactionPending,
     setTransactionSuccess,
   } = useContext(appContext);
-  const [selectedOption, setSelectedOption] = useState("default");
+  const [selectedOption, setSelectedOption] = useState<
+   any
+  >("default");
   const [imageUploadOption, setImageUploadOption] = useState<
     "file" | "url" | null
   >(null);
   const [searchParams] = useSearchParams();
+
+  const [copied, setCopied] = useState(false);
 
   // Set the mode according to the search params if any
   useEffect(() => {
@@ -49,9 +56,9 @@ const TokenStudio = () => {
         searchParams.get("mode") === "1"
           ? "default"
           : searchParams.get("mode") === "2"
-          ? "split"
+          ? "custom"
           : searchParams.get("mode") === "3"
-          ? "combine"
+          ? "nft"
           : "default"
       );
     }
@@ -70,6 +77,15 @@ const TokenStudio = () => {
 
     setImageUploadOption(event.target.value);
   };
+
+  const handleCopy = async (value: string) => {
+    setCopied(true);
+
+    copyToClipboard(value);
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    setCopied(false);
+  };
+
   return (
     <AnimatePageIn display={true}>
       <section className="mx-3 mt-8">
@@ -307,7 +323,7 @@ const TokenStudio = () => {
                         ) {
                           return true;
                         }
-                        
+
                         if (
                           val.substring(0, "<artimage>".length) === "<artimage>"
                         ) {
@@ -444,7 +460,6 @@ const TokenStudio = () => {
             handleBlur,
             handleSubmit,
           }) => (
-
             <form onSubmit={handleSubmit}>
               <>
                 <div className="flex-1 flex flex-col">
@@ -574,9 +589,7 @@ const TokenStudio = () => {
                         className="bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
                       />
                       {errors && errors.amount && touched && touched.amount && (
-                        <p className={errorTextStyle}>
-                          {errors.amount}
-                        </p>
+                        <p className={errorTextStyle}>{errors.amount}</p>
                       )}
                     </div>
 
@@ -596,19 +609,89 @@ const TokenStudio = () => {
                         className="bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
                       />
                       {errors && errors.name && touched && touched.name && (
-                        <p className={errorTextStyle}>
-                          {errors.name}
-                        </p>
+                        <p className={errorTextStyle}>{errors.name}</p>
                       )}
                     </div>
 
-                    <div className="mt-16">
+                    <div className="mt-16 flex gap-2">
                       <PrimaryButton
                         disabled={!isValid || isSubmitting}
                         type="submit"
                       >
                         Mint
                       </PrimaryButton>
+                      <SecondaryButton
+                        type="button"
+                        extraClass={`flex-1 ${
+                          copied && "!bg-teal-500 !text-white"
+                        } !outline-none`}
+                        onClick={() => {
+                          
+
+                          if (
+                            selectedOption !== "custom" &&
+                            selectedOption !== "nft"
+                          ) {
+                            handleCopy(
+                              `tokencreate name:${values.name} amount:${values.amount} decimals:8`
+                            );
+                          }
+
+                          if (selectedOption === "custom") {
+                            const token = {
+                              name: values.name,
+                              url: values.url,
+                              description: values.description,
+                              ticker: values.ticker,
+                              webvalidate: values.webvalidation,
+                              ...values.extraMetadata.reduce(
+                                (acc, { key, value }) => {
+                                  acc[key] = value;
+                                  return acc;
+                                },
+                                {}
+                              ),
+                            };
+
+                            handleCopy(
+                              `tokencreate name:${JSON.stringify(
+                                token
+                              )} amount:${values.amount} decimals:8`
+                            );
+                          }
+
+                          if (selectedOption === "nft") {
+                            const token = {
+                              name: values.name,
+                              url: values.url,
+                              description: values.description,
+                              owner: values.owner,
+                              webvalidate: values.webvalidation,
+                              ...values.extraMetadata.reduce(
+                                (acc, { key, value }) => {
+                                  acc[key] = value;
+                                  return acc;
+                                },
+                                {}
+                              ),
+                            };
+
+                            handleCopy(
+                              `tokencreate name:${JSON.stringify(
+                                token
+                              )} amount:${values.amount} decimals:0`
+                            );
+                          }
+                        }}
+                      >
+                        {!copied && "CLI"}
+
+                        {copied && (
+                          <span className="flex items-center gap-2">
+                            Copied! <DoneIcon size={22} fill="currentColor" />
+                          </span>
+                        )}
+                      </SecondaryButton>
                     </div>
 
                     {errors && errors.burn && (
@@ -777,9 +860,7 @@ const TokenStudio = () => {
                             className="bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
                           />
                           {errors && errors.url && touched && touched.url && (
-                            <p className={errorTextStyle}>
-                              {errors.url}
-                            </p>
+                            <p className={errorTextStyle}>{errors.url}</p>
                           )}
                         </div>
                       )}
@@ -803,9 +884,7 @@ const TokenStudio = () => {
                           errors.amount &&
                           touched &&
                           touched.amount && (
-                            <p className={errorTextStyle}>
-                              {errors.amount}
-                            </p>
+                            <p className={errorTextStyle}>{errors.amount}</p>
                           )}
                       </div>
 
@@ -825,9 +904,7 @@ const TokenStudio = () => {
                           className="bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
                         />
                         {errors && errors.name && touched && touched.name && (
-                          <p className={errorTextStyle}>
-                            {errors.name}
-                          </p>
+                          <p className={errorTextStyle}>{errors.name}</p>
                         )}
                       </div>
 
@@ -851,9 +928,7 @@ const TokenStudio = () => {
                             errors.ticker &&
                             touched &&
                             touched.ticker && (
-                              <p className={errorTextStyle}>
-                                {errors.ticker}
-                              </p>
+                              <p className={errorTextStyle}>{errors.ticker}</p>
                             )}
                         </div>
                       )}
@@ -878,9 +953,7 @@ const TokenStudio = () => {
                             errors.owner &&
                             touched &&
                             touched.owner && (
-                              <p className={errorTextStyle}>
-                                {errors.owner}
-                              </p>
+                              <p className={errorTextStyle}>{errors.owner}</p>
                             )}
                         </div>
                       )}
@@ -942,13 +1015,84 @@ const TokenStudio = () => {
                           <ExtraMetadataFields values={values} />
                         </>
                       )}
-                      <div className="mt-16">
+                      <div className="mt-16 flex gap-2">
                         <PrimaryButton
                           disabled={!isValid || isSubmitting}
                           type="submit"
+                          extraClass="flex-grow"
                         >
                           Mint
                         </PrimaryButton>
+                        <SecondaryButton
+                          type="button"
+                          extraClass={`flex-1 ${
+                            copied && "!bg-teal-500 !text-white"
+                          } !outline-none`}
+                          onClick={() => {
+                            if (
+                              selectedOption !== "custom" &&
+                              selectedOption !== "nft"
+                            ) {
+                              handleCopy(
+                                `tokencreate name:${values.name} amount:${values.amount} decimals:8`
+                              );
+                            }
+
+                            if (selectedOption === "custom") {
+                              const token = {
+                                name: values.name,
+                                url: values.url,
+                                description: values.description,
+                                ticker: values.ticker,
+                                webvalidate: values.webvalidation,
+                                ...values.extraMetadata.reduce(
+                                  (acc, { key, value }) => {
+                                    acc[key] = value;
+                                    return acc;
+                                  },
+                                  {}
+                                ),
+                              };
+
+                              handleCopy(
+                                `tokencreate name:${JSON.stringify(
+                                  token
+                                )} amount:${values.amount} decimals:8`
+                              );
+                            }
+
+                            if (selectedOption === "nft") {
+                              const token = {
+                                name: values.name,
+                                url: values.url,
+                                description: values.description,
+                                owner: values.owner,
+                                webvalidate: values.webvalidation,
+                                ...values.extraMetadata.reduce(
+                                  (acc, { key, value }) => {
+                                    acc[key] = value;
+                                    return acc;
+                                  },
+                                  {}
+                                ),
+                              };
+
+                              handleCopy(
+                                `tokencreate name:${JSON.stringify(
+                                  token
+                                )} amount:${values.amount} decimals:0`
+                              );
+                            }
+                          }}
+                        >
+                          {!copied && "CLI"}
+
+                          {copied && (
+                            <span className="flex items-center gap-2">
+                              Copied! <DoneIcon size={22} fill="currentColor" />
+                            </span>
+                          )}
+                        </SecondaryButton>
                       </div>
 
                       {errors && errors.burn && (
