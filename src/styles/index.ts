@@ -1,1 +1,1 @@
-export const errorTextStyle = "text-black text-xs p-2 bg-violet-300 max-w-max rounded-full mx-auto my-1"
+export const errorTextStyle = "text-black font-light text-xs p-2 bg-violet-100 shadow-inner px-4 shadow-violet-300 max-w-max rounded-full mx-auto my-4"

@@ -27,24 +27,28 @@ function ExtraMetadataFields({ values }) {
 
   return (
     <>
-      <label className="text-sm opacity-70 dark:text-neutral-300 font-bold">
-        Add Additional Metadata
-      </label>
+      <div className="grid grid-cols-3 items-center">
+        <hr className="border " />
+        <label className="text-xs text-center text-light text-neutral-600 dark:text-neutral-100">
+          Add Additional Metadata
+        </label>
+        <hr className="border "/>
+      </div>
       <div className="space-y-4 mt-2">
         {values.extraMetadata.map((item, index) => (
-          <div key={index}>
-            <div  className="flex items-center space-x-2">
+          <div key={index} className="p-4 bg-neutral-200 dark:bg-neutral-950">
+            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2">
               <input
                 type="text"
                 value={item.key}
                 disabled
-                className="bg-neutral-200 dark:bg-gray-700 text-black dark:text-white rounded p-2 flex-1 font-bold"
+                className="flex-grow bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
               />
               <input
                 type="text"
                 value={item.value}
                 disabled
-                className="bg-neutral-200 dark:bg-gray-700 text-black dark:text-white rounded p-2 flex-1"
+                className="flex-grow bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
               />
               <button
                 type="button"
@@ -54,40 +58,40 @@ function ExtraMetadataFields({ values }) {
                 Remove
               </button>
             </div>
-              {errors.extraMetadata && errors.extraMetadata[index]  && (
+            {errors.extraMetadata && errors.extraMetadata[index] && (
               <div className={errorTextStyle}>
-                {errors.extraMetadata[index].key && <p>{errors.extraMetadata[index].key}</p>}
-                {errors.extraMetadata[index].value && <p>{errors.extraMetadata[index].value}</p>}
+                {errors.extraMetadata[index].key && (
+                  <p>{errors.extraMetadata[index].key}</p>
+                )}
+                {errors.extraMetadata[index].value && (
+                  <p>{errors.extraMetadata[index].value}</p>
+                )}
               </div>
             )}
-
-
           </div>
         ))}
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2">
           <input
             type="text"
             placeholder="Key"
             value={newKey}
             onChange={(e) => setNewKey(e.target.value)}
-            className="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded p-2 flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-grow bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
           />
           <input
             type="text"
             placeholder="Value"
             value={newValue}
             onChange={(e) => setNewValue(e.target.value)}
-            className="bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded p-2 flex-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-grow bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
           />
           <button
             type="button"
             onClick={addMetadata}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 flex-1 focus:outline-none w-full hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
           >
             Add
           </button>
-
-         
         </div>
       </div>
     </>

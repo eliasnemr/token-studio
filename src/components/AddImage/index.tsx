@@ -82,7 +82,7 @@ const AddImage = () => {
             />
 
             <p className="text-[12px] dark:text-neutral-400 text-center">
-                Image formats accepted are png, jpeg, jpg, svg (all files are compressed &{' '}
+                Image formats accepted are png, jpeg, jpg, svg (all files are compressed to fit on-chain and so best use for uploaded images are in smaller avatar icons)
             </p>
         </>
     );

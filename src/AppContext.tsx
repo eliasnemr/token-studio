@@ -7,6 +7,10 @@ interface IProps {
 }
 const AppProvider = ({ children }: IProps) => {
   const loaded = useRef(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // Initialize state based on localStorage
+    return localStorage.getItem("dark-mode-pub") === "true";
+  });
   const [_currencyFormat, setCurrencyFormat] = useState<{ decimal: string; thousands: string }>({
     decimal: '.',
     thousands: '',
@@ -28,6 +32,17 @@ const [_transactionError, setTransactionError] = useState<false | string>(false)
     }
   }, [loaded]);
 
+  useEffect(() => {
+    // Apply or remove the 'dark' class on the document element
+    if (isDarkMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("dark-mode-pub", "true");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("dark-mode-pub", "false");
+    }
+  }, [isDarkMode]); // Re-run effect when isDarkMode changes
+
   return (
     <appContext.Provider
       value={
@@ -43,6 +58,10 @@ const [_transactionError, setTransactionError] = useState<false | string>(false)
            setTransactionError,
            _transactionPending,
            setTransactionPending,
+
+
+        isDarkMode,
+        setIsDarkMode,
         }
       }
     >

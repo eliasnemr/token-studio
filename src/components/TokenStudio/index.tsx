@@ -241,7 +241,7 @@ const TokenStudio = () => {
           validationSchema={yup.object().shape({
             name: yup
               .string()
-              .required("This field is required")
+              .required("Field is required")
               .matches(/^[^\\;]+$/, "Invalid characters."),
             owner:
               selectedOption !== "default" && selectedOption !== "custom"
@@ -252,7 +252,7 @@ const TokenStudio = () => {
                 : yup.string().nullable(),
             amount: yup
               .string()
-              .required("Field required")
+              .required("Field is required")
               .matches(/^\d*\.?\d+$/, "Enter a valid number")
               //@ts-ignore
               .test("test amount", function (val) {
@@ -419,7 +419,7 @@ const TokenStudio = () => {
               yup.object().shape({
                 key: yup
                   .string()
-                  .required("Key is required")
+                  .required("Field is required")
                   .matches(
                     /^[a-zA-Z0-9_]+$/,
                     "Key can only contain letters, numbers, and underscores"
@@ -427,7 +427,7 @@ const TokenStudio = () => {
                   .max(50, "Key must be at most 50 characters"),
                 value: yup
                   .string()
-                  .required("Value is required")
+                  .required("Field is required")
                   .max(255, "Value must be at most 255 characters"),
               })
             ),
@@ -475,7 +475,7 @@ const TokenStudio = () => {
                             <SimpleTokenIcon fill="currentColor" size={20} />
                           </span>
                           <span
-                            className={`ml-0 md:ml-2 ${
+                            className={`ml-0 sm:ml-2 ${
                               selectedOption === "default" ? "text-white" : ""
                             }`}
                           >
@@ -510,7 +510,7 @@ const TokenStudio = () => {
                             <CustomTokenIcon fill="currentColor" size={20} />
                           </span>
                           <span
-                            className={`ml-0 md:ml-2 ${
+                            className={`ml-0 sm:ml-2 ${
                               selectedOption === "custom" ? "text-white" : ""
                             }`}
                           >
@@ -545,7 +545,7 @@ const TokenStudio = () => {
                             <NonFungibleIcon fill="currentColor" size={20} />
                           </span>
                           <span
-                            className={`ml-0 md:ml-2 ${
+                            className={`ml-0 sm:ml-2 ${
                               selectedOption === "nft" ? "text-white" : ""
                             }`}
                           >
@@ -932,7 +932,7 @@ const TokenStudio = () => {
                                 </p>
                               )}
 
-                            <p className="text-[12px] dark:text-neutral-400 text-left">
+                            <p className="text-xs dark:text-neutral-400 text-left mt-2 text-neutral-500">
                               Hosting a .txt file on your webpage with the
                               tokenid of this token after it is minted will
                               validate its authenticity
