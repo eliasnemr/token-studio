@@ -15,7 +15,7 @@ const AppThemeSwitch = () => {
   return (
     <div
       onClick={handleSwitchChange}
-      className="bg-neutral-100 hover:cursor-pointer hover:bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-300 dark:font-bold dark:hover:bg-[#2C2C2C] rounded-full flex items-center p-2 shadow-inner shadow-neutral-300 dark:shadow-neutral-950 max-w-max"
+      className="bg-neutral-100 text-black hover:cursor-pointer hover:bg-neutral-50 dark:bg-neutral-800 dark:text-neutral-300 dark:font-bold dark:hover:bg-[#2C2C2C] rounded-full flex items-center p-2 max-w-max"
     >
       <Around
         placeholder="Theme"

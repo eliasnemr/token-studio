@@ -1,4 +1,5 @@
 import { createContext, useRef, useEffect, useState } from "react";
+import useMenuProps from "./hooks/useMenuProps.tsx";
 
 export const appContext = createContext({} as any);
 
@@ -7,6 +8,8 @@ interface IProps {
 }
 const AppProvider = ({ children }: IProps) => {
   const loaded = useRef(false);
+  const menuProps = useMenuProps();
+  const [blockNumber, setBlockNumber] = useState<null|number>(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Initialize state based on localStorage
     return localStorage.getItem("dark-mode-pub") === "true";
@@ -27,6 +30,14 @@ const [_transactionError, setTransactionError] = useState<false | string>(false)
       (window as any).MDS.init((msg: any) => {
         if (msg.event === "inited") {
           // do something Minim-y
+
+            MDS.cmd('block', function (res) {
+                setBlockNumber(res.response.block);
+            });
+        }
+
+        if (msg.event === "NEWBLOCK") {
+            setBlockNumber(msg.data.txpow.header.block);
         }
       });
     }
@@ -42,6 +53,7 @@ const [_transactionError, setTransactionError] = useState<false | string>(false)
       localStorage.setItem("dark-mode-pub", "false");
     }
   }, [isDarkMode]); // Re-run effect when isDarkMode changes
+
 
   return (
     <appContext.Provider
@@ -59,9 +71,11 @@ const [_transactionError, setTransactionError] = useState<false | string>(false)
            _transactionPending,
            setTransactionPending,
 
+            ...menuProps,
+            isDarkMode,
+            setIsDarkMode,
 
-        isDarkMode,
-        setIsDarkMode,
+            blockNumber, setBlockNumber
         }
       }
     >
