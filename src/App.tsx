@@ -1,13 +1,17 @@
 import "./App.css";
-import AppThemeSwitch from "./components/AppThemeSwitch";
 import Header from "./components/Header";
 
 import { Outlet } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import MobileMenu from "./components/MobileMenu";
+import AppBackground from "./components/Images/AppBackground";
+import {useContext} from "react";
+import {appContext} from "./AppContext.tsx";
 
 function App() {
-  return (
+  const { mintOpt } = useContext(appContext);
+
+    return (
     <AppLayout>
 
         <Header />
@@ -15,13 +19,11 @@ function App() {
         <MobileMenu />
 
         <main className="flex-1 flex">
-            <Outlet />
+            <AppBackground type={mintOpt === "default" ? "main" : mintOpt === "custom" ? "custom" : "nft"}>
+                <Outlet />
+            </AppBackground>
         </main>
 
-
-      <footer className="flex items-end justify-center py-4">
-        <AppThemeSwitch />
-      </footer>
     </AppLayout>
   );
 }

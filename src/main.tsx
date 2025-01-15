@@ -6,11 +6,18 @@ import AppProvider from "./AppContext.tsx";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import GettingStarted from "./pages/GettingStarted";
 import Help from "./pages/Help";
+import TokenStudio from "./components/TokenStudio";
 
 const router = createHashRouter([
     {
         path: "/",
-        element: <App />
+        element: <App />,
+        children: [
+            {
+                path: "studio",
+                element: <TokenStudio />,
+            }
+        ]
     },
     {
         path: "/intro",

@@ -29,7 +29,7 @@ const HamburgerButton: React.FC<HamburgerProps> = ({ isOpen, toggle }) => {
                                 x: "-50%",
                                 y: "-50%",
                             }}
-                            className="absolute h-[1px] w-5 bg-white"
+                            className="absolute h-[2px] w-5 bg-black dark:bg-white"
                             variants={{
                                 open: {
                                     rotate: ["0deg", "0deg", "45deg"],
@@ -48,7 +48,7 @@ const HamburgerButton: React.FC<HamburgerProps> = ({ isOpen, toggle }) => {
                                 x: "-50%",
                                 y: "-50%",
                             }}
-                            className="absolute h-[1px] w-5 bg-white"
+                            className="absolute h-[2px] w-5 bg-black dark:bg-white"
                             variants={{
                                 open: {
                                     rotate: ["0deg", "0deg", "-45deg"],
@@ -65,7 +65,7 @@ const HamburgerButton: React.FC<HamburgerProps> = ({ isOpen, toggle }) => {
                                 x: "-50%",
                                 y: "-50%",
                             }}
-                            className="absolute h-[1px] w-5 bg-white"
+                            className="absolute h-[2px] w-5 bg-black dark:bg-white"
                             variants={{
                                 open: {
                                     rotate: ["0deg", "0deg", "45deg"],

@@ -34,10 +34,10 @@ const TokenStudio = () => {
     setTransactionError,
     setTransactionPending,
     setTransactionSuccess,
+    mintOpt,
+    setMintOpts
   } = useContext(appContext);
-  const [selectedOption, setSelectedOption] = useState<
-   any
-  >("default");
+
   const [imageUploadOption, setImageUploadOption] = useState<
     "file" | "url" | null
   >(null);
@@ -52,7 +52,7 @@ const TokenStudio = () => {
       searchParams.get("mode") &&
       ["1", "2", "3"].includes(searchParams.get("mode")!)
     ) {
-      setSelectedOption(
+      setMintOpts(
         searchParams.get("mode") === "1"
           ? "default"
           : searchParams.get("mode") === "2"
@@ -72,7 +72,7 @@ const TokenStudio = () => {
 
   const handleOptionChange = (mode: string, event: any) => {
     if (mode === "form") {
-      return setSelectedOption(event.target.value);
+      return setMintOpts(event.target.value);
     }
 
     setImageUploadOption(event.target.value);
@@ -87,18 +87,8 @@ const TokenStudio = () => {
   };
 
   return (
-    <AnimatePageIn display={true}>
-      <section className="mx-3 mt-8">
-        <div className="grid grid-cols-[1fr_auto] items-center">
-          <h6 className="font-bold tracking-wide dark:text-neutral-300">
-            Token Studio
-          </h6>
-        </div>
-        <p>
-          {selectedOption === "default" && "Create a simple token"}
-          {selectedOption === "custom" && "Create a custom token with an image"}
-          {selectedOption === "nft" && "Create a non-fungible token"}
-        </p>
+    <div className="bg-black max-h-max mt-[60px] px-4 p-0 md:p-8 rounded w-full md:max-w-[648px] md:min-w-[648px]">
+      <section>
         <Formik
           initialValues={{
             name: "",
@@ -133,7 +123,7 @@ const TokenStudio = () => {
             try {
               // Create a promise for the MDS command and await its resolution
 
-              if (selectedOption === "default") {
+              if (mintOpt === "default") {
                 await new Promise((resolve, reject) => {
                   (window as any).MDS.cmd(
                     `tokencreate amount:${amount} name:${name} ${
@@ -158,7 +148,7 @@ const TokenStudio = () => {
                 });
               }
 
-              if (selectedOption === "custom") {
+              if (mintOpt === "custom") {
                 await new Promise((resolve, reject) => {
                   const token = {
                     name: name,
@@ -195,7 +185,7 @@ const TokenStudio = () => {
                 });
               }
 
-              if (selectedOption === "nft") {
+              if (mintOpt === "nft") {
                 await new Promise((resolve, reject) => {
                   const token = {
                     name: name,
@@ -260,7 +250,7 @@ const TokenStudio = () => {
               .required("Field is required")
               .matches(/^[^\\;]+$/, "Invalid characters."),
             owner:
-              selectedOption !== "default" && selectedOption !== "custom"
+                mintOpt !== "default" && mintOpt !== "custom"
                 ? yup
                     .string()
                     .matches(/^[^\\;]+$/, "Invalid characters.")
@@ -306,7 +296,7 @@ const TokenStudio = () => {
                 }
               }),
             url:
-              selectedOption !== "default"
+                mintOpt !== "default"
                 ? yup
                     .string()
                     .trim()
@@ -384,14 +374,14 @@ const TokenStudio = () => {
                 }
               }),
             description:
-              selectedOption !== "default"
+              mintOpt !== "default"
                 ? yup
                     .string()
                     .min(0)
                     .max(255, "Maximum 255 characters allowed.")
                 : yup.string().nullable(),
             ticker:
-              selectedOption !== "default" && selectedOption !== "nft"
+              mintOpt !== "default" && mintOpt !== "nft"
                 ? yup
                     .string()
                     .min(0)
@@ -399,7 +389,7 @@ const TokenStudio = () => {
                     .matches(/^[^\\;]+$/, "Invalid characters.")
                 : yup.string().nullable(),
             webvalidation:
-              selectedOption !== "default"
+                mintOpt !== "default"
                 ? yup
                     .string()
                     .test(
@@ -468,47 +458,40 @@ const TokenStudio = () => {
                     <fieldset>
                       <div className="grid grid-cols-3 gap-2">
                         <label
-                          className={`text-center justify-center text-sm p-4 flex-col rounded-lg sm:roundd-full sm:flex-row flex items-center transition-all ${
-                            selectedOption === "default"
-                              ? "bg-black dark:bg-black font-bold"
-                              : "bg-neutral-200 dark:bg-[#1B1B1B]"
+                          className={`p-3 text-left justify-start text-black text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
+                            mintOpt === "default"
+                              ? "bg-lightOrange"
+                              : "bg-mediumDarkContrast"
                           }`}
                         >
                           <input
                             type="radio"
                             name="option"
                             value="default"
-                            checked={selectedOption === "default"}
+                            checked={mintOpt === "default"}
                             onChange={(e) => handleOptionChange("form", e)}
                             className="hidden"
                           />
                           <span
-                            className={`${
-                              selectedOption === "default" && "text-white"
-                            }`}
-                          >
-                            <SimpleTokenIcon fill="currentColor" size={20} />
-                          </span>
-                          <span
                             className={`ml-0 sm:ml-2 ${
-                              selectedOption === "default" ? "text-white" : ""
+                              mintOpt === "default" ? "text-black" : "text-white"
                             }`}
                           >
                             Simple
                           </span>
                         </label>
                         <label
-                          className={`text-center justify-center text-sm flex-col rounded-lg sm:roundd-full sm:flex-row p-4 flex items-center transition-all ${
-                            selectedOption === "custom"
-                              ? "bg-black dark:bg-black font-bold"
-                              : "bg-neutral-200 dark:bg-[#1B1B1B]"
-                          }`}
+                            className={`p-3 text-left justify-start text-black text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
+                                mintOpt === "custom"
+                                    ? "bg-lightOrange"
+                                    : "bg-mediumDarkContrast"
+                            }`}
                         >
                           <input
                             type="radio"
                             name="option"
                             value="custom"
-                            checked={selectedOption === "custom"}
+                            checked={mintOpt === "custom"}
                             onChange={(e) => {
                               handleOptionChange("form", e);
 
@@ -518,32 +501,25 @@ const TokenStudio = () => {
                             className="hidden"
                           />
                           <span
-                            className={`${
-                              selectedOption === "custom" && "text-white"
-                            }`}
-                          >
-                            <CustomTokenIcon fill="currentColor" size={20} />
-                          </span>
-                          <span
                             className={`ml-0 sm:ml-2 ${
-                              selectedOption === "custom" ? "text-white" : ""
+                              mintOpt === "custom" ? "text-black" : "text-white"
                             }`}
                           >
                             Custom
                           </span>
                         </label>
                         <label
-                          className={`text-center justify-center text-sm flex-col rounded-lg sm:roundd-full sm:flex-row p-4 flex items-center transition-all ${
-                            selectedOption === "nft"
-                              ? "bg-black dark:bg-black font-bold"
-                              : "bg-neutral-200 dark:bg-[#1B1B1B]"
-                          }`}
+                            className={`p-3 text-left justify-start text-black text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
+                                mintOpt === "nft"
+                                    ? "bg-lightOrange"
+                                    : "bg-mediumDarkContrast"
+                            }`}
                         >
                           <input
                             type="radio"
                             name="option"
                             value="nft"
-                            checked={selectedOption === "nft"}
+                            checked={mintOpt === "nft"}
                             onChange={(e) => {
                               handleOptionChange("form", e);
 
@@ -553,15 +529,8 @@ const TokenStudio = () => {
                             className="hidden"
                           />
                           <span
-                            className={`${
-                              selectedOption === "nft" ? "text-white" : ""
-                            }`}
-                          >
-                            <NonFungibleIcon fill="currentColor" size={20} />
-                          </span>
-                          <span
                             className={`ml-0 sm:ml-2 ${
-                              selectedOption === "nft" ? "text-white" : ""
+                              mintOpt === "nft" ? "text-black" : "text-white"
                             }`}
                           >
                             Non-fungible
@@ -572,7 +541,7 @@ const TokenStudio = () => {
                   </div>
                 </div>
 
-                {selectedOption === "default" && (
+                {mintOpt === "default" && (
                   <>
                     <div className="my-2">
                       <label className="text-sm opacity-70 dark:text-neutral-300">
@@ -629,15 +598,15 @@ const TokenStudio = () => {
                           
 
                           if (
-                            selectedOption !== "custom" &&
-                            selectedOption !== "nft"
+                            mintOpt !== "custom" &&
+                            mintOpt !== "nft"
                           ) {
                             handleCopy(
                               `tokencreate name:${values.name} amount:${values.amount} decimals:8`
                             );
                           }
 
-                          if (selectedOption === "custom") {
+                          if (mintOpt === "custom") {
                             const token = {
                               name: values.name,
                               url: values.url,
@@ -660,7 +629,7 @@ const TokenStudio = () => {
                             );
                           }
 
-                          if (selectedOption === "nft") {
+                          if (mintOpt === "nft") {
                             const token = {
                               name: values.name,
                               url: values.url,
@@ -727,7 +696,7 @@ const TokenStudio = () => {
                   </>
                 )}
 
-                {(selectedOption === "custom" || selectedOption === "nft") && (
+                {(mintOpt === "custom" || mintOpt === "nft") && (
                   <>
                     <div className="my-4">
                       <div className="flex-1 flex flex-col">
@@ -741,7 +710,7 @@ const TokenStudio = () => {
                             <div className="grid grid-cols-2 gap-2">
                               <label
                                 className={`${
-                                  selectedOption === "nft" && "opacity-50"
+                                  mintOpt === "nft" && "opacity-50"
                                 } justify-center text-sm p-4 flex-col rounded-lg sm:roundd-full sm:flex-row flex items-center transition-all ${
                                   imageUploadOption === "file"
                                     ? "bg-black dark:bg-black font-bold"
@@ -751,7 +720,7 @@ const TokenStudio = () => {
                                 <input
                                   type="radio"
                                   name="option"
-                                  disabled={selectedOption === "nft"}
+                                  disabled={mintOpt === "nft"}
                                   value="file"
                                   checked={imageUploadOption === "file"}
                                   onChange={(e) => {
@@ -908,7 +877,7 @@ const TokenStudio = () => {
                         )}
                       </div>
 
-                      {selectedOption === "custom" && (
+                      {mintOpt === "custom" && (
                         <div className="my-2">
                           <label className="text-sm opacity-70 dark:text-neutral-300">
                             Ticker Symbol
@@ -933,7 +902,7 @@ const TokenStudio = () => {
                         </div>
                       )}
 
-                      {selectedOption === "nft" && (
+                      {mintOpt === "nft" && (
                         <div className="my-2">
                           <label className="text-sm opacity-70 dark:text-neutral-300">
                             Creator's Name
@@ -958,8 +927,8 @@ const TokenStudio = () => {
                         </div>
                       )}
 
-                      {(selectedOption === "custom" ||
-                        selectedOption === "nft") && (
+                      {(mintOpt === "custom" ||
+                          mintOpt === "nft") && (
                         <>
                           <div className="my-2">
                             <label className="text-sm opacity-70 dark:text-neutral-300">
@@ -1030,15 +999,15 @@ const TokenStudio = () => {
                           } !outline-none`}
                           onClick={() => {
                             if (
-                              selectedOption !== "custom" &&
-                              selectedOption !== "nft"
+                              mintOpt !== "custom" &&
+                              mintOpt !== "nft"
                             ) {
                               handleCopy(
                                 `tokencreate name:${values.name} amount:${values.amount} decimals:8`
                               );
                             }
 
-                            if (selectedOption === "custom") {
+                            if (mintOpt === "custom") {
                               const token = {
                                 name: values.name,
                                 url: values.url,
@@ -1061,7 +1030,7 @@ const TokenStudio = () => {
                               );
                             }
 
-                            if (selectedOption === "nft") {
+                            if (mintOpt === "nft") {
                               const token = {
                                 name: values.name,
                                 url: values.url,
@@ -1133,7 +1102,7 @@ const TokenStudio = () => {
           )}
         </Formik>
       </section>
-    </AnimatePageIn>
+    </div>
   );
 };
 

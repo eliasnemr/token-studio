@@ -9,14 +9,15 @@ import HamburgerButton from "./HamburgerButton";
 const Header = () => {
     const {isDarkMode, toggleMenu, isMenuOpen} = useContext(appContext);
 
-    return <div className="w-full border border-grey40 dark:border-darkContrastFour"><div className="max-w-[1800px] mx-auto">
+    return <div className="w-full border-b border-grey40 dark:border-darkContrastFour">
+        <div className="max-w-[1800px] mx-auto">
         <header onClick={() => {
             if (window.navigator.userAgent.includes("Minima Browser")) {
                 // @ts-ignore
                 Android.showTitleBar();
             }
         }}
-                className="bg-white h-[76px] lg:h-[94px] dark:bg-black px-4 md:px-15 sticky flex justify-between items-center">
+                className="h-[76px] lg:h-[94px]  px-4 md:px-15 sticky flex justify-between items-center bg-white dark:bg-black bg-[url('/assets/main-bg.svg')] bg-cover bg-center md:bg-none">
 
             <div className="flex gap-4">
                 <BrandSVG height={42} width={37} fill={!isDarkMode ? "black" : "white"}/>

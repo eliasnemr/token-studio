@@ -1,5 +1,7 @@
 import { createContext, useRef, useEffect, useState } from "react";
 import useMenuProps from "./hooks/useMenuProps.tsx";
+import useStudioOpts from "./hooks/useStudioOpts.tsx";
+import useIsMobileCheck from "./hooks/useIsMobileCheck.tsx";
 
 export const appContext = createContext({} as any);
 
@@ -9,6 +11,8 @@ interface IProps {
 const AppProvider = ({ children }: IProps) => {
   const loaded = useRef(false);
   const menuProps = useMenuProps();
+  const studioProps = useStudioOpts();
+  const isMobileProps = useIsMobileCheck();
   const [blockNumber, setBlockNumber] = useState<null|number>(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Initialize state based on localStorage
@@ -72,6 +76,9 @@ const [_transactionError, setTransactionError] = useState<false | string>(false)
            setTransactionPending,
 
             ...menuProps,
+            ...studioProps,
+            ...isMobileProps,
+
             isDarkMode,
             setIsDarkMode,
 
