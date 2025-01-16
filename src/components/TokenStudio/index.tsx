@@ -11,15 +11,8 @@ import AddImage from "../AddImage";
 import PreviewToken from "../PreviewToken";
 import PrimaryButton from "../PrimaryButton";
 import { isValidURLAll, isValidURLSecureOnly } from "../../utils/functions";
-
-import UploadIcon from "../Icons/UploadIcon";
-import RubbishIcon from "../Icons/RubbishIcon";
-import WebIcon from "../Icons/WebIcon";
-import FireIcon from "../Icons/FireIcon";
 import ExtraMetadataFields from "../ExtraMetadata";
-import { errorTextStyle } from "../../styles";
 import SecondaryButton from "../SecondaryButton";
-import DoneIcon from "../Icons/DoneIcon";
 import copyToClipboard from "../../utils/copyToClipboard";
 import { CopyIcon } from "lucide-react";
 import { Input } from "../Input";
@@ -92,7 +85,7 @@ const TokenStudio = () => {
 
   return (
     <>
-      <div className="custom-scrollbar mt-0 pt-8 md:border border-darkContrastFour bg-black max-h-max mt-[40px] md:mt-[60px] px-4 p-0 md:p-8 rounded w-full md:max-w-[648px] md:min-w-[648px] overflow-auto pb-10 mb-0 md:mb-10 overflow-x-none">
+      <div className="custom-scrollbar mt-0 pt-8 md:border border-grey20 dark:border-darkContrastFour  bg-grey10 dark:bg-black max-h-max md:mt-[60px] px-4 p-0 md:p-8 rounded w-full md:max-w-[648px] md:min-w-[648px] overflow-auto pb-10 mb-0 md:mb-10 overflow-x-none">
         <section>
           <Formik
             initialValues={{
@@ -510,10 +503,10 @@ const TokenStudio = () => {
                               <fieldset>
                                 <div className="grid grid-cols-3 gap-2 md:gap-4">
                                   <label
-                                    className={`p-3 text-left justify-start text-black text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
+                                    className={`p-3 text-left justify-start  text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
                                       mintOpt === "default"
                                         ? "bg-lightOrange"
-                                        : "bg-mediumDarkContrast"
+                                        : "text-black dark:text-white bg-grey40 dark:bg-mediumDarkContrast"
                                     }`}
                                   >
                                     <input
@@ -529,18 +522,18 @@ const TokenStudio = () => {
                                     <span
                                       className={`ml-0 sm:ml-2 ${
                                         mintOpt === "default"
-                                          ? "text-black"
-                                          : "text-white"
+                                          ? "text-white dark:text-black"
+                                          : "text-black dark:text-white"
                                       }`}
                                     >
                                       Simple
                                     </span>
                                   </label>
                                   <label
-                                    className={`p-3 text-left justify-start text-black text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
+                                    className={`p-3 text-left justify-start text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
                                       mintOpt === "custom"
-                                        ? "bg-lightOrange"
-                                        : "bg-mediumDarkContrast"
+                                        ? "bg-lightOrange text-black"
+                                        : "text-black dark:text-white bg-grey40 dark:bg-mediumDarkContrast"
                                     }`}
                                   >
                                     <input
@@ -560,18 +553,18 @@ const TokenStudio = () => {
                                     <span
                                       className={`ml-0 sm:ml-2 ${
                                         mintOpt === "custom"
-                                          ? "text-black"
-                                          : "text-white"
+                                          ? "text-white dark:text-black"
+                                          : "text-black dark:text-white"
                                       }`}
                                     >
                                       Custom
                                     </span>
                                   </label>
                                   <label
-                                    className={`p-3 text-left justify-start text-black text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
+                                    className={`p-3 text-left justify-start  text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
                                       mintOpt === "nft"
-                                        ? "bg-lightOrange"
-                                        : "bg-mediumDarkContrast"
+                                        ? "bg-lightOrange text-black "
+                                        : "text-black dark:text-white bg-grey40 dark:bg-mediumDarkContrast"
                                     }`}
                                   >
                                     <input
@@ -591,8 +584,8 @@ const TokenStudio = () => {
                                     <span
                                       className={`ml-0 sm:ml-2 ${
                                         mintOpt === "nft"
-                                          ? "text-black"
-                                          : "text-white"
+                                          ? "text-white dark:text-black"
+                                          : "text-black dark:text-white"
                                       }`}
                                     >
                                       Non-fungible
@@ -603,7 +596,7 @@ const TokenStudio = () => {
                             </div>
                           </div>
 
-                          <div className="my-4 mb-6">
+                          <div className="my-4 mb-6 text-black dark:text-white text-sm">
                             {mintOpt === "default" && (
                               <p>
                                 Create a simple token. Write some more info here
@@ -857,7 +850,7 @@ const TokenStudio = () => {
                               {(mintOpt === "custom" || mintOpt === "nft") && (
                                 <div className="space-y-4 mt-4">
                                   <div className="flex flex-col gap-2">
-                                    <label className="text-sm">
+                                    <label className="text-sm text-black dark:text-white">
                                       Description
                                     </label>
                                     <MessageArea

@@ -30,12 +30,13 @@ export default function ImageUploadSelect({
         value={imageUploadOption}
         onChange={handleSelectChange}
         disabled={mintOpt === "nft"}
-        className={`text-grey20 outline-none
+        className={`text-black dark:text-grey20 outline-none
                   w-full px-4 py-6 pr-8 rounded
                   text-sm font-bold
                    appearance-none
                   transition-all
-                  bg-darkContrast
+                  bg-grey20
+                  dark:bg-darkContrast
         `}
       >
         <option value="file">Upload File</option>

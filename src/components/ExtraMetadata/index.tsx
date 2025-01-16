@@ -28,11 +28,11 @@ function ExtraMetadataFields({ values }) {
   return (
     <>
       <div className="grid grid-cols-3 items-center">
-        <hr className="border border-darkContrastFour" />
-        <label className="text-xs text-center dark:text-white">
+        <hr className="border border-grey20 dark:border-darkContrastFour" />
+        <label className="text-xs text-center text-black dark:text-white">
           Add Additional Metadata
         </label>
-        <hr className="border border-darkContrastFour" />
+        <hr className="border border-grey20 dark:border-darkContrastFour" />
       </div>
       <div className="space-y-4 mt-2">
         <div className="space-y-0 space-x-2 grid grid-cols-[1fr_1fr_auto]">
@@ -41,14 +41,14 @@ function ExtraMetadataFields({ values }) {
             placeholder="Attribute"
             value={newKey}
             onChange={(e) => setNewKey(e.target.value)}
-            className="bg-darkContrast text-grey80 outline-none py-3 px-4"
+            className="text-black bg-grey20 dark:bg-darkContrast dark:text-grey80 outline-none py-3 px-4"
           />
           <input
             type="text"
             placeholder="Value"
             value={newValue}
             onChange={(e) => setNewValue(e.target.value)}
-            className="bg-darkContrast text-grey80 outline-none py-3 px-4"
+            className="text-black bg-grey20 dark:bg-darkContrast dark:text-grey80 outline-none py-3 px-4"
           />
           <button
             type="button"
@@ -66,13 +66,13 @@ function ExtraMetadataFields({ values }) {
                 type="text"
                 value={item.key}
                 disabled
-                className="bg-darkContrast text-grey80 outline-none py-3 px-4"
+                className="text-black bg-grey20 dark:bg-darkContrast dark:text-grey80 outline-none py-3 px-4"
               />
               <input
                 type="text"
                 value={item.value}
                 disabled
-                className="bg-darkContrast text-grey80 outline-none py-3 px-4"
+                className="text-black bg-grey20 dark:bg-darkContrast dark:text-grey80 outline-none py-3 px-4"
               />
               <button
                 type="button"

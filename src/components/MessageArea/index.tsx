@@ -20,7 +20,7 @@ const MessageArea = ({
   // const [_f, setF] = useState(false);
 
   return (
-    <div className={`bg-white dark:bg-darkContrast rounded p-4 w-full flex`}>
+    <div className={`bg-grey20 dark:bg-darkContrast rounded p-4 w-full flex`}>
       <textarea
         id={id}
         name={name}
@@ -31,7 +31,7 @@ const MessageArea = ({
         rows={5}
         value={value}
       />
-      <span className="mt-auto text-sm dark:text-grey80">
+      <span className="mt-auto text-sm text-black dark:text-grey80">
         {value.length + "/" + 255}
       </span>
     </div>

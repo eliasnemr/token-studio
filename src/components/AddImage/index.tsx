@@ -56,14 +56,14 @@ const AddImage = () => {
     <>
       <div
         onClick={() => fileInputRef.current?.click()}
-        className="bg-darkContrast flex-col flex items-center justify-center rounded py-28 gap-4"
+        className="bg-grey20 dark:bg-darkContrast flex-col flex items-center justify-center rounded py-28 gap-4"
       >
         {!formik.values.url && (
           <>
             <span>
               <UploadIcon fill="currentColor" size={40} />
             </span>
-            <p className="text-sm text-grey80">
+            <p className="text-sm text-grey100 dark:text-grey80">
               {!formik.values.url.length && "Upload image"}{" "}
               {!!formik.values.url.length && "Upload another image"}
             </p>
