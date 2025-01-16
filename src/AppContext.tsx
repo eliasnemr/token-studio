@@ -2,6 +2,7 @@ import { createContext, useRef, useEffect, useState } from "react";
 import useMenuProps from "./hooks/useMenuProps.tsx";
 import useStudioOpts from "./hooks/useStudioOpts.tsx";
 import useIsMobileCheck from "./hooks/useIsMobileCheck.tsx";
+import useMinimaWallet from "./hooks/useMinimaWallet.tsx";
 
 export const appContext = createContext({} as any);
 
@@ -13,6 +14,7 @@ const AppProvider = ({ children }: IProps) => {
   const menuProps = useMenuProps();
   const studioProps = useStudioOpts();
   const isMobileProps = useIsMobileCheck();
+    const balanceProps = useMinimaWallet(loaded);
   const [blockNumber, setBlockNumber] = useState<null|number>(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Initialize state based on localStorage
@@ -22,7 +24,6 @@ const AppProvider = ({ children }: IProps) => {
     decimal: '.',
     thousands: '',
 });
-
 const [_transactionSubmitting, setTransactionSubmitting] = useState(false);
 const [_transactionSuccess, setTransactionSuccess] = useState(false);
 const [_transactionPending, setTransactionPending] = useState(false);
@@ -33,7 +34,7 @@ const [_transactionError, setTransactionError] = useState<false | string>(false)
       loaded.current = true;
       (window as any).MDS.init((msg: any) => {
         if (msg.event === "inited") {
-          // do something Minim-y
+            // do something Minim-y
 
             MDS.cmd('block', function (res) {
                 setBlockNumber(res.response.block);
@@ -78,6 +79,7 @@ const [_transactionError, setTransactionError] = useState<false | string>(false)
             ...menuProps,
             ...studioProps,
             ...isMobileProps,
+            ...balanceProps,
 
             isDarkMode,
             setIsDarkMode,

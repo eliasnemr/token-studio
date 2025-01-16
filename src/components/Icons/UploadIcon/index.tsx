@@ -1,22 +1,37 @@
 const UploadIcon = ({ fill, size }: any) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="icon icon-tabler icon-tabler-heart-filled"
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        strokeWidth="2.5"
-        stroke={fill}
-        fill="none"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 48 48"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <rect
+      x="1"
+      y="1"
+      width="46"
+      height="46"
+      rx="23"
+      stroke="#FF8630"
+      stroke-width="2"
+    />
+    <mask
+      id="mask0_6494_17588"
+      maskUnits="userSpaceOnUse"
+      x="12"
+      y="12"
+      width="24"
+      height="24"
     >
-        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-        <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-        <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-        <path d="M12 11v6" />
-        <path d="M9.5 13.5l2.5 -2.5l2.5 2.5" />
-    </svg>
+      <rect x="12" y="12" width="24" height="24" fill="#D9D9D9" />
+    </mask>
+    <g mask="url(#mask0_6494_17588)">
+      <path
+        d="M23 28V19.85L20.4 22.45L19 21L24 16L29 21L27.6 22.45L25 19.85V28H23ZM18 32C17.45 32 16.9792 31.8042 16.5875 31.4125C16.1958 31.0208 16 30.55 16 30V27H18V30H30V27H32V30C32 30.55 31.8042 31.0208 31.4125 31.4125C31.0208 31.8042 30.55 32 30 32H18Z"
+        fill="#FF8630"
+      />
+    </g>
+  </svg>
 );
 
 export default UploadIcon;

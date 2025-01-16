@@ -1,39 +1,41 @@
 import { makeTokenImage } from "../../utils/functions";
-import useFormatMinimaNumber from "../../utils/useMakeNumber";
-import AnimatePageIn from "../Animate/AnimatePageIn";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 interface Props {
   url: string;
-  name: string;
-  amount: string;
 }
-const PreviewToken = ({ url, name, amount }: Props) => {
-  const { makeMinimaNumber } = useFormatMinimaNumber();
+
+const PreviewToken = ({ url }: Props) => {
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    setKey((prevKey) => prevKey + 1);
+  }, [url]);
+
+  const isArtImage = url.includes("artimage");
+  const isDataImage = url.includes("data:image");
+  const imageSize = !isDataImage && !isArtImage ? "w-48 h-48" : "w-12 h-12";
 
   return (
-    <AnimatePageIn display={true}>
-      <div className="grid grid-cols-[auto_1fr] items-center bg-white dark:bg-[#1B1B1B] rounded shadow-inner">
-        <div className={`${!url.includes("data:image") && !url.includes('artimage') ? "w-48 h-48" : "w-12 h-12"} aspect-square overflow-hidden mr-2`}>
-          <img src={url.includes("artimage") ? makeTokenImage(url) : url} alt="preview" className="w-full h-full" />
-        </div>
-        <div className="overflow-hidden flex flex-col">
-          
-            <h6 className="font-bold text-left truncate dark:text-neutral-300">
-              {(name.length && name) || "Untitled token"}
-            </h6>
-            <input
-              readOnly
-              value={
-                (amount.length && makeMinimaNumber(amount, 2000)) || "200000000"
-              }
-              className="truncate w-full text-left focus:outline-none bg-transparent text-sm tracking-wider dark:text-neutral-300"
-            />
-        </div>
-      </div>
-    </AnimatePageIn>
+    <AnimatePresence mode="wait">
+      <motion.div
+        className={`${imageSize} aspect-square overflow-hidden mx-auto border border-darkContrastFour`}
+        initial={{ y: -5, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.3 }}
+      >
+        <motion.img
+          src={isArtImage ? makeTokenImage(url) : url}
+          alt="preview"
+          className="w-full h-full object-cover"
+          initial={{ scale: 1.2 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.3 }}
+        />
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
 export default PreviewToken;
-
-// className="bg-[#080A0B] w-[56px] min-w-[56px] h-[56px] min-h-[56px]"

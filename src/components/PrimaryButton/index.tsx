@@ -12,7 +12,7 @@ const PrimaryButton = ({ disabled, extraClass, onClick, children, type }: IProps
         <button
             disabled={disabled}
             onClick={onClick ? onClick : () => null}
-            className={`bg-teal-500 text-white dark:text-[#1B1B1B] dark:bg-teal-800 hover:bg-teal-400 dark:hover:bg-teal-700 font-bold tracking-wider w-full disabled:bg-opacity-10 disabled:hover:bg-opacity-10 ${extraClass && extraClass}`}
+            className={`bg-lightOrange disabled:opacity-50 hover:bg-lightestOrange rounded-none text-black py-3 appearance-none ${extraClass && extraClass}`}
             type={type}
         >
             {children}

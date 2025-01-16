@@ -21,7 +21,7 @@ const Header = () => {
 
             <div className="flex gap-4">
                 <BrandSVG height={42} width={37} fill={!isDarkMode ? "black" : "white"}/>
-                <h3 className="hidden md:block text-black dark:text-white my-auto font-bold">Token Studio</h3>
+                <h3 className="text-black dark:text-white my-auto font-bold">Token Studio</h3>
             </div>
 
             <div className="-mr-2 -my-2 md:hidden">

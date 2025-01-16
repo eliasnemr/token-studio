@@ -28,34 +28,58 @@ function ExtraMetadataFields({ values }) {
   return (
     <>
       <div className="grid grid-cols-3 items-center">
-        <hr className="border " />
-        <label className="text-xs text-center text-light text-neutral-600 dark:text-neutral-100">
+        <hr className="border border-darkContrastFour" />
+        <label className="text-xs text-center dark:text-white">
           Add Additional Metadata
         </label>
-        <hr className="border "/>
+        <hr className="border border-darkContrastFour" />
       </div>
       <div className="space-y-4 mt-2">
+        <div className="space-y-0 space-x-2 grid grid-cols-[1fr_1fr_auto]">
+          <input
+            type="text"
+            placeholder="Attribute"
+            value={newKey}
+            onChange={(e) => setNewKey(e.target.value)}
+            className="bg-darkContrast text-grey80 outline-none py-3 px-4"
+          />
+          <input
+            type="text"
+            placeholder="Value"
+            value={newValue}
+            onChange={(e) => setNewValue(e.target.value)}
+            className="bg-darkContrast text-grey80 outline-none py-3 px-4"
+          />
+          <button
+            type="button"
+            className="p-0 appearance-none outline-none focus:outline-none"
+            onClick={addMetadata}
+          >
+            <img alt="add-circle" src="/assets/add_circle.svg" />
+          </button>
+        </div>
+
         {values.extraMetadata.map((item, index) => (
-          <div key={index} className="p-4 bg-neutral-200 dark:bg-neutral-950">
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2">
+          <div key={index}>
+            <div className="space-y-0 space-x-2 grid grid-cols-[1fr_1fr_auto]">
               <input
                 type="text"
                 value={item.key}
                 disabled
-                className="flex-grow bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
+                className="bg-darkContrast text-grey80 outline-none py-3 px-4"
               />
               <input
                 type="text"
                 value={item.value}
                 disabled
-                className="flex-grow bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
+                className="bg-darkContrast text-grey80 outline-none py-3 px-4"
               />
               <button
                 type="button"
+                className="p-0 appearance-none outline-none focus:outline-none"
                 onClick={() => removeMetadata(index)}
-                className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
               >
-                Remove
+                <img alt="cancel" src="/assets/cancel.svg" />
               </button>
             </div>
             {errors.extraMetadata && errors.extraMetadata[index] && (
@@ -70,29 +94,6 @@ function ExtraMetadataFields({ values }) {
             )}
           </div>
         ))}
-        <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-2">
-          <input
-            type="text"
-            placeholder="Key"
-            value={newKey}
-            onChange={(e) => setNewKey(e.target.value)}
-            className="flex-grow bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
-          />
-          <input
-            type="text"
-            placeholder="Value"
-            value={newValue}
-            onChange={(e) => setNewValue(e.target.value)}
-            className="flex-grow bg-white rounded p-4 w-full focus:border focus:outline-none dark:placeholder:text-neutral-600 dark:bg-[#1B1B1B]"
-          />
-          <button
-            type="button"
-            onClick={addMetadata}
-            className="bg-blue-500 flex-1 focus:outline-none w-full hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-          >
-            Add
-          </button>
-        </div>
       </div>
     </>
   );
