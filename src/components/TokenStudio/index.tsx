@@ -92,7 +92,7 @@ const TokenStudio = () => {
 
   return (
     <>
-      <div className="custom-scrollbar md:border border-darkContrastFour bg-black max-h-max mt-[40px] md:mt-[60px] px-4 p-0 md:p-8 rounded w-full md:max-w-[648px] md:min-w-[648px] overflow-auto pb-10 mb-0 md:mb-10 overflow-x-none">
+      <div className="custom-scrollbar mt-0 pt-8 md:border border-darkContrastFour bg-black max-h-max mt-[40px] md:mt-[60px] px-4 p-0 md:p-8 rounded w-full md:max-w-[648px] md:min-w-[648px] overflow-auto pb-10 mb-0 md:mb-10 overflow-x-none">
         <section>
           <Formik
             initialValues={{
