@@ -14,6 +14,7 @@ export default {
         lightestOrange: "var(--lightest-orange)",
         darkOrange: "var(--dark-orange)",
         grey: "var(--grey)",
+        grey5: "var(--grey-5)",
         grey10: "var(--grey-10)",
         grey20: "var(--grey-20)",
         grey25: "var(--grey-25)",

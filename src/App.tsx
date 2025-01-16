@@ -5,25 +5,34 @@ import { Outlet } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import MobileMenu from "./components/MobileMenu";
 import AppBackground from "./components/Images/AppBackground";
-import {useContext} from "react";
-import {appContext} from "./AppContext.tsx";
+import { useContext } from "react";
+import { appContext } from "./AppContext.tsx";
+import TransactionStatus from "./components/TransactionStatus";
 
 function App() {
   const { mintOpt } = useContext(appContext);
 
-    return (
+  return (
     <AppLayout>
+      <Header />
 
-        <Header />
+      <MobileMenu />
 
-        <MobileMenu />
+      <main className="flex-1 flex">
+        <AppBackground
+          type={
+            mintOpt === "default"
+              ? "main"
+              : mintOpt === "custom"
+                ? "custom"
+                : "nft"
+          }
+        >
+          <Outlet />
+        </AppBackground>
 
-        <main className="flex-1 flex">
-            <AppBackground type={mintOpt === "default" ? "main" : mintOpt === "custom" ? "custom" : "nft"}>
-                <Outlet />
-            </AppBackground>
-        </main>
-
+        <TransactionStatus />
+      </main>
     </AppLayout>
   );
 }

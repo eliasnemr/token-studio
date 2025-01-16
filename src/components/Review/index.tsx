@@ -10,7 +10,6 @@ const Review = () => {
   const { values, submitForm, resetForm } = useFormikContext<FormikValues>();
 
   const isBurning = values.burn && parseInt(values.burn) > 0;
-  console.log(values);
   return (
     <div className="space-y-6">
       <button
@@ -68,8 +67,8 @@ const Review = () => {
 
           {mintOpt !== "default" && !!values.extraMetadata.length && (
             <div className="space-y-4">
-              {values.extraMetadata.map((item) => (
-                <div key={item.key}>
+              {values.extraMetadata.map((item, i) => (
+                <div key={item.key + "_" + i}>
                   <h3 className="text-grey80">{item.key}</h3>
                   <p>{item.value}</p>
                 </div>
@@ -87,7 +86,9 @@ const Review = () => {
       </div>
 
       <div className="grid space-y-4">
-        <PrimaryButton type="submit">Create</PrimaryButton>
+        <PrimaryButton type="submit" onClick={() => submitForm()}>
+          Create
+        </PrimaryButton>
         <button
           onClick={() => {
             resetForm();

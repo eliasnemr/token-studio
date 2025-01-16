@@ -13,7 +13,7 @@ const UploadIcon = ({ fill, size }: any) => (
       height="46"
       rx="23"
       stroke="#FF8630"
-      stroke-width="2"
+      strokeWidth="2"
     />
     <mask
       id="mask0_6494_17588"

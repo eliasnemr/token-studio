@@ -234,11 +234,6 @@ const TokenStudio = () => {
                 }
 
                 setTransactionSuccess(true);
-                await new Promise((resolve) => setTimeout(resolve, 2000));
-
-                // reset
-                setTransactionSubmitting(false);
-                setTransactionSuccess(false);
                 resetForm();
               } catch (error) {
                 console.error(error);

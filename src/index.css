@@ -30,6 +30,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
+  --grey-5: hsla(240, 9%, 98%, 1);
   --grey-10: hsl(240, 5%, 96%);
   --grey-20: hsla(240, 5%, 92%, 1);
   --grey-25: hsla(240, 6%, 75%, 1);
