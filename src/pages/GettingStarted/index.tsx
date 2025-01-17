@@ -22,7 +22,7 @@ export default function GettingStarted() {
     "Creating a Simple Token is as easy as choosing a name and total supply—you're ready to go!",
     "Token Studio offers all the functionality you need to create Custom Tokens tailored to your tokens needs.",
     "Effortlessly mint NFTs with Token Studio and bring your digital creations to life.",
-    "Your Tokens and NFTs will appear in your balance within your Minima node wallet, ready to be stored away safely or transferred to Ichiba, the NFT Minima marketplace to be traded.",
+    "Your Tokens and NFTs will appear in your balance within your Minima node wallet, ready to be stored away safely or transferred to Soko, the NFT Minima marketplace to be traded.",
   ];
 
   // Auto-play animation for first two steps
