@@ -25,7 +25,7 @@ const TransactionStatus = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-[#000000] bg-opacity-80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center"
+        className="fixed inset-0 bg-[#000000] bg-opacity-80 backdrop-blur-sm md:backdrop-blur-none z-50 flex items-end sm:items-center justify-center"
       >
         <motion.div
           initial={{ y: "100%" }}
@@ -54,14 +54,14 @@ const TransactionStatus = () => {
             {/* Success State */}
             {_transactionSuccess && (
               <div className="flex flex-col items-center w-full pt-16 pb-6">
-                <div className="w-16 h-16 flex items-center justify-center mb-6">
+                <div className="w-12 h-12 flex items-center justify-center mb-6">
                   <img
                     alt="success"
-                    src="/assets/check_circle.png"
+                    src="./assets/check_circle.png"
                     className="w-full h-full"
                   />
                 </div>
-                <h3 className="text-[#f9f9fa] text-[18px] md:text-[28px] font-medium text-center">
+                <h3 className="text-[#f9f9fa] text-[18px] md:text-[28px] font-medium text-center mb-10 md:mb-4">
                   Your token has been created
                 </h3>
               </div>
@@ -70,10 +70,10 @@ const TransactionStatus = () => {
             {/* Pending State */}
             {_transactionPending && (
               <div className="flex flex-col items-center w-full pt-16 pb-6 px-6">
-                <div className="w-16 h-16 flex items-center justify-center mb-6">
+                <div className="w-12 h-12 flex items-center justify-center mb-6">
                   <img
                     alt="pending"
-                    src="/assets/pending.png"
+                    src="./assets/pending.png"
                     className="w-full h-full"
                   />
                 </div>
@@ -90,10 +90,10 @@ const TransactionStatus = () => {
             {/* Error State */}
             {_transactionError && (
               <div className="flex flex-col items-center w-full pt-16 pb-6 px-6">
-                <div className="w-16 h-16 flex items-center justify-center mb-6">
+                <div className="w-12 h-12 flex items-center justify-center mb-6">
                   <img
                     alt="error"
-                    src="/assets/error.png"
+                    src="./assets/error.png"
                     className="w-full h-full"
                   />
                 </div>
@@ -109,7 +109,7 @@ const TransactionStatus = () => {
             )}
 
             {/* Action Button */}
-            <div className="px-4 w-full pb-20 md:pb-6">
+            <div className="px-4 md:px-10 w-full pb-16">
               {(_transactionError ||
                 _transactionPending ||
                 _transactionSuccess) && (

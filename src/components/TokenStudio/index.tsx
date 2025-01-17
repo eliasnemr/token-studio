@@ -6,9 +6,7 @@ import Decimal from "decimal.js";
 import { appContext } from "../../AppContext";
 
 import MessageArea from "../../components/MessageArea";
-import AnimatePageIn from "../Animate/AnimatePageIn";
 import AddImage from "../AddImage";
-import PreviewToken from "../PreviewToken";
 import PrimaryButton from "../PrimaryButton";
 import { isValidURLAll, isValidURLSecureOnly } from "../../utils/functions";
 import ExtraMetadataFields from "../ExtraMetadata";
@@ -92,6 +90,7 @@ const TokenStudio = () => {
               name: "",
               amount: "",
               burn: "",
+              decimals: "8",
               url: "",
               ticker: "",
               description: "",
@@ -103,6 +102,7 @@ const TokenStudio = () => {
               {
                 amount,
                 name,
+                decimals,
                 burn,
                 url,
                 ticker,
@@ -130,7 +130,7 @@ const TokenStudio = () => {
                 if (mintOpt === "default") {
                   await new Promise((resolve, reject) => {
                     (window as any).MDS.cmd(
-                      `tokencreate amount:${amount} name:${name} ${
+                      `tokencreate amount:${amount} name:${name} decimals:${decimals} ${
                         burn.length ? "burn:" + burn : ""
                       }`,
                       (resp: any) => {
@@ -167,7 +167,7 @@ const TokenStudio = () => {
                     };
 
                     (window as any).MDS.cmd(
-                      `tokencreate decimals:8 amount:${amount} name:"${JSON.stringify(
+                      `tokencreate decimals:${decimals} amount:${amount} name:"${JSON.stringify(
                         token,
                       )}" ${burn.length ? "burn:" + burn : ""}`,
                       (resp: any) => {
@@ -285,6 +285,41 @@ const TokenStudio = () => {
 
                     if (new Decimal(val).greaterThan(1000000000)) {
                       throw new Error("Too much!");
+                    }
+
+                    return true;
+                  } catch (error) {
+                    if (error instanceof Error) {
+                      return createError({ path, message: error.message });
+                    }
+                  }
+                }),
+              decimals: yup
+                .string()
+                .required("Field is required")
+                .matches(/^\d*\.?\d+$/, "Enter a valid number")
+                //@ts-ignore
+                .test("test decimal amount", function (val) {
+                  //@ts-ignore
+                  const { path, createError } = this;
+
+                  if (!val) {
+                    return false;
+                  }
+
+                  try {
+                    if (new Decimal(val).decimalPlaces() > 1) {
+                      throw new Error("You can't use decimal places");
+                    }
+
+                    if (new Decimal(val).greaterThan(16)) {
+                      throw new Error("Maximum allowed decimal places is 16");
+                    }
+
+                    if (new Decimal(val).lessThan(0)) {
+                      throw new Error(
+                        "Minimum allowed decimal places is 0 for an NFT",
+                      );
                     }
 
                     return true;
@@ -648,12 +683,25 @@ const TokenStudio = () => {
                                 />
 
                                 <Input
+                                  id="decimals"
+                                  name="decimals"
+                                  type="string"
+                                  label="Decimals"
+                                  placeholder="Enter total decimal places"
+                                  value={values.decimals}
+                                  onChange={handleChange}
+                                  onBlur={handleBlur}
+                                  error={errors.decimals}
+                                  touched={touched.decimals}
+                                />
+
+                                <Input
                                   id="burn"
                                   name="burn"
                                   type="text"
                                   label="Add a burn"
                                   placeholder="Burn"
-                                  info="Enter an amount"
+                                  info="(optional) You can ensure your transaction enters in the next block by adding a network fee amount"
                                   value={values.burn}
                                   onChange={handleChange}
                                   onBlur={handleBlur}
@@ -674,7 +722,7 @@ const TokenStudio = () => {
                                 </PrimaryButton>
                                 <SecondaryButton
                                   type="button"
-                                  extraClass={`md:min-w-[120px] ${copied && "!bg-green"}`}
+                                  extraClass={`md:min-w-[120px] flex items-center justify-center ${copied && "!bg-green"}`}
                                   onClick={() => {
                                     if (
                                       mintOpt !== "custom" &&
@@ -815,6 +863,21 @@ const TokenStudio = () => {
                                   />
                                 )}
 
+                                {mintOpt === "custom" && (
+                                  <Input
+                                    id="decimals"
+                                    name="decimals"
+                                    type="string"
+                                    label="Decimals"
+                                    placeholder="Enter total decimal places"
+                                    value={values.decimals}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={errors.decimals}
+                                    touched={touched.decimals}
+                                  />
+                                )}
+
                                 {mintOpt === "nft" && (
                                   <Input
                                     id="owner"
@@ -836,7 +899,7 @@ const TokenStudio = () => {
                                   type="text"
                                   label="Add a burn"
                                   placeholder="Burn"
-                                  info="Enter an amount"
+                                  info="(optional) You can ensure your transaction enters in the next block by adding a network fee amount"
                                   value={values.burn}
                                   onChange={handleChange}
                                   onBlur={handleBlur}
@@ -902,7 +965,7 @@ const TokenStudio = () => {
                                 </PrimaryButton>
                                 <SecondaryButton
                                   type="button"
-                                  extraClass={`md:min-w-[120px] ${copied && "!bg-green"}`}
+                                  extraClass={`md:min-w-[120px] flex items-center justify-center ${copied && "!bg-green"}`}
                                   onClick={() => {
                                     if (
                                       mintOpt !== "custom" &&

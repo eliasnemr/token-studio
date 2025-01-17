@@ -1,15 +1,17 @@
 import React from "react";
+import Tooltip from "../Tooltip";
 
 interface FormInputProps {
   id: string;
   name: string;
   label: string;
+  readOnly?: boolean;
   info?: string;
   type?: string;
   placeholder?: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   error?: string;
   touched?: boolean;
   required?: boolean;
@@ -28,6 +30,7 @@ export const Input: React.FC<FormInputProps> = ({
   onBlur,
   error,
   touched,
+  readOnly = false,
   required = true,
   optional = false,
 }) => {
@@ -37,12 +40,13 @@ export const Input: React.FC<FormInputProps> = ({
         {label} {optional && <span className="text-grey80">(Optional)</span>}
       </label>
       <div
-        className={`flex rounded bg-grey20 dark:bg-[#17191C] ${error && "border border-red"}`}
+        className={`flex rounded bg-grey20 dark:bg-[#17191C] ${error && touched && "border border-red"}`}
       >
         <input
           id={id}
           name={name}
           type={type}
+          readOnly={readOnly}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
@@ -51,8 +55,9 @@ export const Input: React.FC<FormInputProps> = ({
           className={`text-black dark:text-white rounded py-3 px-4 w-full appearance-none outline-none dark:placeholder:text-grey100 bg-transparent`}
         />
         {info && (
-          <div className="text-sm text-grey60 my-auto mr-4">
+          <Tooltip content={info}>
             <svg
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
               width="20"
               height="20"
               viewBox="0 0 20 20"
@@ -64,7 +69,7 @@ export const Input: React.FC<FormInputProps> = ({
                 fill="#91919D"
               />
             </svg>
-          </div>
+          </Tooltip>
         )}
       </div>
       {error && touched && <p className="text-sm text-red">{error}</p>}

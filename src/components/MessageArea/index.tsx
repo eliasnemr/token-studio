@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface Props {
   handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   handleBlur: (e: React.FocusEvent<HTMLTextAreaElement>) => void;

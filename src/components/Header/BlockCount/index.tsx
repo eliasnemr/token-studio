@@ -12,12 +12,10 @@ export default function BlockCount() {
         }).format(blockNumber)
       : "N/A";
 
-
-
   return (
     <div className="mt-1 font-medium md:text-xs">
       <span className="flex">
-        <div className="gradient-border flex items-center bg-white text-black dark:bg-black dark:text-white">
+        <div className="gradient-border flex items-center text-black dark:bg-black dark:text-white">
           Block:{" "}
           {!blockNumber && (
             <div className="bg-muted rounded-full animate-pulse ml-2 h-[14px] w-[43px]" />

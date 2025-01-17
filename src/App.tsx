@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./components/Header";
 
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import AppLayout from "./components/AppLayout";
 import MobileMenu from "./components/MobileMenu";
 import AppBackground from "./components/Images/AppBackground";
@@ -11,6 +11,7 @@ import TransactionStatus from "./components/TransactionStatus";
 
 function App() {
   const { mintOpt } = useContext(appContext);
+  const { pathname } = useLocation();
 
   return (
     <AppLayout>
@@ -21,11 +22,13 @@ function App() {
       <main className="flex-1 flex">
         <AppBackground
           type={
-            mintOpt === "default"
+            !pathname.includes("help") && mintOpt === "default"
               ? "main"
-              : mintOpt === "custom"
+              : !pathname.includes("help") && mintOpt === "custom"
                 ? "custom"
-                : "nft"
+                : !pathname.includes("help") && mintOpt === "nft"
+                  ? "nft"
+                  : "none"
           }
         >
           <Outlet />

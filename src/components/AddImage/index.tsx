@@ -5,11 +5,13 @@ import { base64ToBlob, compressImage } from "../../utils/compressImage";
 import InfoBox from "../InfoBox";
 import { makeTokenImage } from "../../utils/functions";
 import RubbishIcon from "../Icons/RubbishIcon";
+import { Input } from "../Input";
 
 const AddImage = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const formik: FormikContextType<FormikValues> = useFormikContext();
   const [_, setSelectedFile] = React.useState<File | null>(null);
+  const [name, setName] = React.useState("");
 
   const handleChangeIcon = async (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = evt.target;
@@ -22,8 +24,10 @@ const AddImage = () => {
       try {
         const imageSrc = await handleFileToBase64(files[0]);
         formik.setFieldValue("url", imageSrc);
+        setName(files[0].name);
         const blob = base64ToBlob(imageSrc as string);
         const compressedFile = new File([blob], "test");
+
         setSelectedFile(compressedFile);
         if (compressedFile.size > 55000) {
           return formik.setFieldError("url", "File too large");
@@ -56,7 +60,7 @@ const AddImage = () => {
     <>
       <div
         onClick={() => fileInputRef.current?.click()}
-        className="bg-grey20 dark:bg-darkContrast flex-col flex items-center justify-center rounded py-28 gap-4"
+        className="bg-grey20 dark:bg-darkContrast flex-col flex items-center justify-center rounded py-16 gap-4"
       >
         {!formik.values.url && (
           <>
@@ -79,12 +83,16 @@ const AddImage = () => {
                   : formik.values.url
               }
               alt="preview"
-              className="w-[100px] h-[100px] "
+              className="w-[170px] h-[170px] "
             />
 
             <button
+              onClick={() => {
+                setSelectedFile(null);
+                formik.setFieldValue("url", "");
+              }}
               type="button"
-              className="appearance-none p-0 rounded-full bg-darkContrast border border-darkContrastFour w-[40px] h-[40px] flex items-center justify-center absolute right-1 bottom-1"
+              className="text-grey100 dark:text-white appearance-none p-0 rounded-full bg-grey20 dark:bg-darkContrast border border-grey80 dark:border-darkContrastFour w-[32px] h-[32px] flex items-center justify-center absolute right-4 bottom-3"
             >
               <RubbishIcon fill="currentColor" />
             </button>
@@ -119,6 +127,17 @@ const AddImage = () => {
         to fit on-chain and so best use for uploaded images are in smaller
         avatar icons)
       </InfoBox>
+
+      {!!name.length && (
+        <Input
+          id="file"
+          name="file"
+          value={name || ""}
+          label="File name"
+          placeholder="File name"
+          onChange={() => null}
+        />
+      )}
     </>
   );
 };

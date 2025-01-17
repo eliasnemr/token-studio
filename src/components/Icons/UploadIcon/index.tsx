@@ -1,4 +1,4 @@
-const UploadIcon = ({ fill, size }: any) => (
+const UploadIcon = ({ size }: any) => (
   <svg
     width={size}
     height={size}

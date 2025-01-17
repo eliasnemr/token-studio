@@ -55,7 +55,7 @@ function ExtraMetadataFields({ values }) {
             className="p-0 appearance-none outline-none focus:outline-none"
             onClick={addMetadata}
           >
-            <img alt="add-circle" src="/assets/add_circle.svg" />
+            <img alt="add-circle" src="./assets/add_circle.svg" />
           </button>
         </div>
 
@@ -79,7 +79,7 @@ function ExtraMetadataFields({ values }) {
                 className="p-0 appearance-none outline-none focus:outline-none"
                 onClick={() => removeMetadata(index)}
               >
-                <img alt="cancel" src="/assets/cancel.svg" />
+                <img alt="cancel" src="./assets/cancel.svg" />
               </button>
             </div>
             {errors.extraMetadata && errors.extraMetadata[index] && (
