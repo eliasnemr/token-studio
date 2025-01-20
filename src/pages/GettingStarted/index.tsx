@@ -48,7 +48,7 @@ export default function GettingStarted() {
   };
 
   return (
-    <div className="bg-white dark:bg-black inset-0 absolute z-[1000] p-10">
+    <div className="bg-white dark:bg-black inset-0 absolute z-[1000] p-4 md:p-10">
       <AppBackground type={`${step <= 1 ? "main_full_opacity" : "main"}`}>
         <div
           className={`h-full flex items-center justify-center w-full text-black px-10 md:px-0`}

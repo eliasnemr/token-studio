@@ -1,5 +1,5 @@
 import { useFormikContext } from "formik";
-import React, { useState } from "react";
+import { useState } from "react";
 import { errorTextStyle } from "../../styles";
 import Tooltip from "../Tooltip";
 
