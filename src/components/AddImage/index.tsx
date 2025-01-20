@@ -60,7 +60,7 @@ const AddImage = () => {
     <>
       <div
         onClick={() => fileInputRef.current?.click()}
-        className="bg-grey20 dark:bg-darkContrast flex-col flex items-center justify-center rounded py-16 gap-4"
+        className="bg-grey10 dark:bg-darkContrast flex-col flex items-center justify-center rounded py-16 gap-4 hover:bg-grey20 hover:dark:bg-lightDarkContrast"
       >
         {!formik.values.url && (
           <>
@@ -92,7 +92,7 @@ const AddImage = () => {
                 formik.setFieldValue("url", "");
               }}
               type="button"
-              className="text-grey100 dark:text-white appearance-none p-0 rounded-full bg-grey20 dark:bg-darkContrast border border-grey80 dark:border-darkContrastFour w-[32px] h-[32px] flex items-center justify-center absolute right-4 bottom-3"
+              className="text-grey100 dark:text-white appearance-none p-0 rounded-full bg-grey20 dark:bg-darkContrast border border-grey80 dark:border-darkContrastFour hover:bg-grey10 hover:dark:bg-lightDarkContrast w-[32px] h-[32px] flex items-center justify-center absolute right-4 bottom-3"
             >
               <RubbishIcon fill="currentColor" />
             </button>

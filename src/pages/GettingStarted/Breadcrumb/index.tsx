@@ -23,7 +23,7 @@ export default function Breadcrumb({
           <button
             key={index}
             onClick={() => onStepChange(stepNumber)}
-            className={`!p-0 h-2 w-2 focus:outline-white dark:focus:outline-lightOrange focus:outline-2 rounded-full transition-colors duration-300  hover:bg-black/80dark:hover:bg-white/80 cursor-pointer ${
+            className={`!p-0 h-2 w-2 focus:outline-none rounded-full transition-colors duration-300  hover:bg-black/80dark:hover:bg-white/80 cursor-pointer ${
               isCurrentStep
                 ? "bg-black dark:bg-white"
                 : "bg-black/30 dark:bg-white/30"

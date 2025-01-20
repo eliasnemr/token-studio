@@ -21,7 +21,7 @@ const Header = () => {
               Android.showTitleBar();
             }
           }}
-          className="h-[76px] lg:h-[94px]  px-4 md:px-15 sticky bg-white dark:bg-black bg-[url('/assets/main-bg.svg')] bg-cover bg-center md:bg-none"
+          className="h-[76px] lg:h-[94px]  px-4 md:px-15 sticky bg-white dark:bg-black bg-[url('/assets/main-bg.svg')] bg-cover bg-center bg-fixed md:bg-none"
         >
           <div className="max-w-[1800px] mx-auto h-full px-4 md:px-15 flex justify-between items-center">
             <Link to="/studio">

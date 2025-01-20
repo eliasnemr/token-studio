@@ -121,7 +121,7 @@ const TransactionStatus = () => {
                     setTransactionSuccess(false);
                     toggleReview();
                   }}
-                  className="w-full py-3 bg-mediumDarkContrast hover:bg-lightDarkContrast text-[#f9f9fa] transition-colors text-base font-medium rounded-none"
+                  className="w-full py-3 bg-mediumDarkContrast hover:bg-lightDarkContrast text-[#f9f9fa] transition-colors text-base font-medium rounded-none focus:outline-none outline-none"
                 >
                   {_transactionError ? "Back" : "Close"}
                 </button>

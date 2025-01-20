@@ -18,6 +18,8 @@ const AppBackground: React.FC<SVGBackgroundProps> = ({ children, type }) => {
   const { isDarkMode, isMobile } = useContext(appContext);
   const { pathname } = useLocation();
 
+  const isIntroduction = pathname.includes("intro");
+
   return (
     <div
       className={`${pathname.includes("intro") ? "relative min-h-full w-full" : "relative flex flex-col min-h-screen w-full"}`}
@@ -25,8 +27,15 @@ const AppBackground: React.FC<SVGBackgroundProps> = ({ children, type }) => {
       <div
         className={`absolute inset-0 bg-no-repeat bg-center bg-cover z-0 flex-grow ${isDarkMode ? "bg-black" : "bg-white"}`}
         style={{
-          backgroundImage:
-            !isMobile || type !== "none" ? `url(${bgs[type]})` : "none",
+          backgroundImage: isIntroduction
+            ? `url(${bgs[type]})`
+            : !isMobile
+              ? `url(${bgs[type]})`
+              : "none",
+
+          backgroundSize: "cover",
+          backgroundAttachment: "fixed",
+          backgroundPosition: "center",
         }}
       />
       <div

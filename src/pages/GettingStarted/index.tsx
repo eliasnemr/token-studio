@@ -51,7 +51,7 @@ export default function GettingStarted() {
     <div className="bg-white dark:bg-black inset-0 absolute z-[1000] p-10">
       <AppBackground type={`${step <= 1 ? "main_full_opacity" : "main"}`}>
         <div
-          className={`h-full flex items-center justify-center text-black px-10 md:px-0`}
+          className={`h-full flex items-center justify-center w-full text-black px-10 md:px-0`}
         >
           {step === 0 && (
             <AnimatePresence mode="wait">
@@ -94,7 +94,7 @@ export default function GettingStarted() {
               >
                 <div className="max-w-lg space-y-10">
                   <div className="space-y-2">
-                    <h3 className="text-black dark:text-white font-bold leading-10 text-center text-[24px] md:text-[40px] mb-6">
+                    <h3 className="text-black dark:text-white font-bold leading-12 text-center text-[24px] md:text-[40px] mb-6">
                       {currentTitle[step - 2]}
                     </h3>
 
@@ -117,7 +117,7 @@ export default function GettingStarted() {
                     <button
                       onClick={handleClickNext}
                       type="button"
-                      className="flex justify-center items-center gap-2 w-full p-4 px-8 text-black bg-lightOrange hover:bg-darkOrange rounded max-w-sm mx-auto"
+                      className="flex justify-center focus:outline-none items-center gap-2 w-full p-4 px-8 text-black bg-lightOrange hover:bg-lighterOrange rounded max-w-sm mx-auto"
                     >
                       {step !== 6 ? "Next" : "Go to studio"}
                     </button>
@@ -125,7 +125,7 @@ export default function GettingStarted() {
                     {step !== 6 && (
                       <div>
                         <Link
-                          className="text-black dark:text-white"
+                          className="text-black dark:text-white hover:text-grey100 dark:hover:text-grey20 focus:outline-none"
                           to="/studio"
                         >
                           Go to studio

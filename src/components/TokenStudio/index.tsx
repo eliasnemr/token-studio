@@ -83,7 +83,7 @@ const TokenStudio = () => {
 
   return (
     <>
-      <div className="custom-scrollbar mt-0 pt-8 md:border border-grey20 dark:border-darkContrastFour  bg-grey10 dark:bg-black max-h-max md:mt-[60px] px-4 p-0 md:p-8 rounded w-full md:max-w-[648px] md:min-w-[648px] overflow-auto pb-10 mb-0 md:mb-10 overflow-x-none">
+      <div className="custom-scrollbar mt-0 pt-8 md:border-2 border-grey20  md:max-h-[80vh] dark:border-[#242424] bg-white dark:bg-black max-h-max md:mt-[60px] px-4 p-0 md:p-8 rounded w-full md:max-w-[648px] md:min-w-[648px] overflow-auto pb-10 mb-0 md:mb-10 overflow-x-none">
         <section>
           <Formik
             initialValues={{
@@ -495,6 +495,8 @@ const TokenStudio = () => {
               handleChange,
               handleBlur,
               handleSubmit,
+              setErrors,
+              setTouched,
             }) => (
               <>
                 {reviewing && (
@@ -538,10 +540,10 @@ const TokenStudio = () => {
                               <fieldset>
                                 <div className="grid grid-cols-3 gap-2 md:gap-4">
                                   <label
-                                    className={`p-3 text-left justify-start  text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
+                                    className={`hover:cursor-pointer p-3 text-left justify-start  text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
                                       mintOpt === "default"
-                                        ? "bg-lightOrange"
-                                        : "text-black dark:text-white bg-grey40 dark:bg-mediumDarkContrast"
+                                        ? "bg-lightOrange text-black"
+                                        : "text-black dark:text-white bg-grey40 dark:bg-mediumDarkContrast dark:hover:bg-lightDarkContrast hover:bg-grey80"
                                     }`}
                                   >
                                     <input
@@ -549,26 +551,24 @@ const TokenStudio = () => {
                                       name="option"
                                       value="default"
                                       checked={mintOpt === "default"}
-                                      onChange={(e) =>
-                                        handleOptionChange("form", e)
-                                      }
+                                      onChange={(e) => {
+                                        handleOptionChange("form", e);
+                                        setErrors({});
+                                        setTouched({});
+                                      }}
                                       className="hidden"
                                     />
                                     <span
-                                      className={`ml-0 sm:ml-2 ${
-                                        mintOpt === "default"
-                                          ? "text-white dark:text-black"
-                                          : "text-black dark:text-white"
-                                      }`}
+                                      className={`text-xs md:text-base shrink-0 truncate ml-0 sm:ml-2`}
                                     >
                                       Simple
                                     </span>
                                   </label>
                                   <label
-                                    className={`p-3 text-left justify-start text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
+                                    className={`hover:cursor-pointer p-3 text-left justify-start text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
                                       mintOpt === "custom"
                                         ? "bg-lightOrange text-black"
-                                        : "text-black dark:text-white bg-grey40 dark:bg-mediumDarkContrast"
+                                        : "text-black dark:text-white bg-grey40 dark:bg-mediumDarkContrast dark:hover:bg-lightDarkContrast hover:bg-grey80"
                                     }`}
                                   >
                                     <input
@@ -581,25 +581,23 @@ const TokenStudio = () => {
 
                                         setImageUploadOption("file");
 
+                                        setErrors({});
+                                        setTouched({});
                                         setFieldValue("url", "");
                                       }}
                                       className="hidden"
                                     />
                                     <span
-                                      className={`ml-0 sm:ml-2 ${
-                                        mintOpt === "custom"
-                                          ? "text-white dark:text-black"
-                                          : "text-black dark:text-white"
-                                      }`}
+                                      className={`text-xs md:text-base shrink-0 truncate ml-0 sm:ml-2`}
                                     >
                                       Custom
                                     </span>
                                   </label>
                                   <label
-                                    className={`p-3 text-left justify-start  text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
+                                    className={`hover:cursor-pointer p-3 text-left justify-start  text-sm flex-col rounded sm:flex-row flex items-center transition-all ${
                                       mintOpt === "nft"
-                                        ? "bg-lightOrange text-black "
-                                        : "text-black dark:text-white bg-grey40 dark:bg-mediumDarkContrast"
+                                        ? "bg-lightOrange text-black"
+                                        : "text-black dark:text-white bg-grey40 dark:bg-mediumDarkContrast dark:hover:bg-lightDarkContrast hover:bg-grey80"
                                     }`}
                                   >
                                     <input
@@ -611,17 +609,15 @@ const TokenStudio = () => {
                                         handleOptionChange("form", e);
 
                                         setImageUploadOption("url");
+                                        setErrors({});
+                                        setTouched({});
 
                                         setFieldValue("url", "");
                                       }}
                                       className="hidden"
                                     />
                                     <span
-                                      className={`ml-0 sm:ml-2 ${
-                                        mintOpt === "nft"
-                                          ? "text-white dark:text-black"
-                                          : "text-black dark:text-white"
-                                      }`}
+                                      className={`text-xs md:text-base shrink-0 truncate ml-0 sm:ml-2`}
                                     >
                                       Non-fungible
                                     </span>
@@ -634,22 +630,26 @@ const TokenStudio = () => {
                           <div className="my-4 mb-6 text-black dark:text-white text-sm">
                             {mintOpt === "default" && (
                               <p>
-                                Create a simple token. Write some more info here
-                                re. what a simple token is for and who might use
-                                this.
+                                Create a simple token without an image. The
+                                token will have a fixed supply and be divisible
+                                to 8 decimal places. It will not be possible to
+                                mint more of this token after creation.
                               </p>
                             )}
                             {mintOpt === "custom" && (
                               <p>
-                                Create a custom token. Write some more info here
-                                re. what a simple token is for and who might use
-                                this.
+                                Create a custom token with an image and
+                                additional information. The token will have a
+                                fixed supply and be divisible to 8 decimal
+                                places. It will not be possible to mint more of
+                                this token after creation.
                               </p>
                             )}
                             {mintOpt === "nft" && (
                               <p>
-                                Create a nft. Write some more info here re. what
-                                a simple token is for and who might use this.
+                                Create an NFT (Non-Fungible Token). The NFT will
+                                have a fixed supply and can only be sent in
+                                whole amounts.
                               </p>
                             )}
                           </div>
@@ -716,13 +716,14 @@ const TokenStudio = () => {
                                 <PrimaryButton
                                   disabled={!isValid || isSubmitting}
                                   type="submit"
-                                  extraClass="flex-1"
+                                  extraClass="flex-1 outline-none focus:outline-none"
                                 >
                                   Review
                                 </PrimaryButton>
                                 <SecondaryButton
                                   type="button"
-                                  extraClass={`md:min-w-[120px] flex items-center justify-center ${copied && "!bg-green"}`}
+                                  disabled={!isValid}
+                                  extraClass={`md:min-w-[120px] dark:bg-white hover:dark:bg-grey20 disabled:bg-grey20 dark:disabled:bg-darkContrastFour dark:disabled:text-black disabled:text-grey60 flex items-center justify-center ${copied && "!bg-green"}`}
                                   onClick={() => {
                                     if (
                                       mintOpt !== "custom" &&
@@ -795,15 +796,17 @@ const TokenStudio = () => {
                           {(mintOpt === "custom" || mintOpt === "nft") && (
                             <>
                               <div className="my-4 space-y-4">
-                                <ImageUploadSelect
-                                  mintOpt={mintOpt}
-                                  imageUploadOption={imageUploadOption}
-                                  handleOptionChange={(e: "url" | "file") =>
-                                    setImageUploadOption(e)
-                                  }
-                                  setFieldValue={setFieldValue}
-                                  values={values}
-                                />
+                                {mintOpt !== "nft" && (
+                                  <ImageUploadSelect
+                                    mintOpt={mintOpt}
+                                    imageUploadOption={imageUploadOption}
+                                    handleOptionChange={(e: "url" | "file") =>
+                                      setImageUploadOption(e)
+                                    }
+                                    setFieldValue={setFieldValue}
+                                    values={values}
+                                  />
+                                )}
 
                                 {imageUploadOption === "file" && <AddImage />}
                                 {imageUploadOption === "url" && (
@@ -959,13 +962,14 @@ const TokenStudio = () => {
                                 <PrimaryButton
                                   disabled={!isValid || isSubmitting}
                                   type="submit"
-                                  extraClass="flex-1"
+                                  extraClass="flex-1 outline-none focus:outline-none"
                                 >
                                   Review
                                 </PrimaryButton>
                                 <SecondaryButton
                                   type="button"
-                                  extraClass={`md:min-w-[120px] flex items-center justify-center ${copied && "!bg-green"}`}
+                                  disabled={!isValid}
+                                  extraClass={`md:min-w-[120px] dark:bg-white hover:dark:bg-grey20 disabled:bg-grey20 dark:disabled:bg-darkContrastFour dark:disabled:text-black disabled:text-grey60 flex items-center justify-center ${copied && "!bg-green"}`}
                                   onClick={() => {
                                     if (
                                       mintOpt !== "custom" &&

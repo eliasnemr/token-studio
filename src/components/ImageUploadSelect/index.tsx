@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 interface ImageUploadSelectProps {
@@ -30,25 +32,40 @@ export default function ImageUploadSelect({
         value={imageUploadOption}
         onChange={handleSelectChange}
         disabled={mintOpt === "nft"}
-        className={`text-black dark:text-grey20 outline-none
-                  w-full px-4 py-6 pr-8 rounded
-                  text-sm font-bold
-                   appearance-none
-                  transition-all
-                  bg-grey20
-                  dark:bg-darkContrast
+        className={`
+          w-full px-4 py-6 
+          bg-grey10 dark:bg-[#17191c]
+          text-black dark:text-grey20 font-medium
+          rounded-lg
+          appearance-none
+          focus:outline-none
+          outline-none
+          disabled:opacity-50 disabled:cursor-not-allowed
+          transition-all duration-200
+          hover:dark:bg-lightDarkContrast
+          hover:bg-grey20
+          cursor-pointer
         `}
       >
         <option value="file">Upload File</option>
         <option value="url">URL</option>
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey20">
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-black dark:text-grey100">
         <svg
-          className="fill-current h-4 w-4"
+          width="12"
+          height="8"
+          viewBox="0 0 12 8"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 20 20"
+          className="opacity-50"
         >
-          <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+          <path
+            d="M1 1.5L6 6.5L11 1.5"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
         </svg>
       </div>
     </div>

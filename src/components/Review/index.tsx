@@ -6,7 +6,7 @@ import { appContext } from "../../AppContext.tsx";
 import PreviewToken from "../PreviewToken";
 
 const Review = () => {
-  const { toggleReview, mintOpt, isDarkMode } = useContext(appContext);
+  const { toggleReview, mintOpt } = useContext(appContext);
   const { values, submitForm, resetForm } = useFormikContext<FormikValues>();
 
   const isBurning = values.burn && parseInt(values.burn) > 0;
@@ -15,10 +15,10 @@ const Review = () => {
       <button
         onClick={() => toggleReview()}
         type="button"
-        className="focus:outline-none appearance-none outline-none p-0 flex gap-2 items-center"
+        className="focus:outline-none appearance-none outline-none p-0 flex gap-2 items-center text-black dark:text-white hover:text-grey80 hover:dark:text-grey80"
       >
-        <BackIcon size={20} fill={isDarkMode ? "white" : "black"} />
-        <span className="text-black dark:text-white text-sm">
+        <BackIcon size={20} fill="currentColor" />
+        <span className=" text-sm">
           {mintOpt === "default" && "Simple"}
           {mintOpt === "custom" && "Custom"}
           {mintOpt === "nft" && "NFT"}

@@ -18,7 +18,7 @@ const MessageArea = ({
   // const [_f, setF] = useState(false);
 
   return (
-    <div className={`bg-grey20 dark:bg-darkContrast rounded p-4 w-full flex`}>
+    <div className={`bg-grey10 dark:bg-darkContrast rounded p-4 w-full flex`}>
       <textarea
         id={id}
         name={name}

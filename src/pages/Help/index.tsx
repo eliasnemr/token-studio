@@ -29,16 +29,17 @@ const HelpSection = () => {
   };
 
   return (
-    <div className="bg-black space-y-8 px-4 md:px-28 py-10">
+    <div className="bg-white dark:bg-black space-y-8 px-4 md:px-28 py-10">
       <div
         className={"grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-6 md:gap-10"}
       >
-        <nav className="bg-darkContrast p-6 md:max-w-md rounded-lg h-max">
+        <nav className="bg-grey10 text-black dark:text-grey20 dark:bg-darkContrast p-6 md:max-w-md rounded-lg h-max">
           <div className="space-y-2">
             <h3 className="text-lightOrange">Welcome to Token Studio</h3>
 
             <ul className="grid gap-4">
               <Link
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -55,6 +56,7 @@ const HelpSection = () => {
 
             <ul className="grid gap-4">
               <Link
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -64,6 +66,7 @@ const HelpSection = () => {
                 &#x2014; Navigate to
               </Link>
               <Link
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -73,6 +76,7 @@ const HelpSection = () => {
                 &#x2014; Enter your Simple Token Details
               </Link>
               <Link
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -82,6 +86,7 @@ const HelpSection = () => {
                 &#x2014; Review your Simple Token Details
               </Link>
               <Link
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -91,6 +96,7 @@ const HelpSection = () => {
                 &#x2014; After your Simple Token creation
               </Link>
               <Link
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -108,6 +114,7 @@ const HelpSection = () => {
             <ul className="grid gap-4">
               <Link
                 to="#"
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(navigateToCreatingCustomToken);
@@ -117,6 +124,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(enterYourCustomTokenDetails);
@@ -126,6 +134,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(reviewYourCustomTokenCreation);
@@ -135,6 +144,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(afterYourCustomTokenCreation);
@@ -144,6 +154,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(whereIsYourCustomToken);
@@ -160,6 +171,7 @@ const HelpSection = () => {
             <ul className="grid gap-4">
               <Link
                 to="#"
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(navigateToNFT);
@@ -169,6 +181,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(enterYourNFTDetails);
@@ -178,6 +191,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(reviewYourNFTDetails);
@@ -187,6 +201,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(afterYourNFTCreation);
@@ -196,6 +211,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
+                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(whereIsMyNFT);
@@ -207,7 +223,7 @@ const HelpSection = () => {
           </div>
         </nav>
 
-        <section>
+        <section className="text-black dark:text-grey20">
           <h1 className="text-lightOrange text-2xl">Welcome to Token Studio</h1>
           <p className="!mt-6">
             Token Studio is the ultimate MiniDapp for creating Simple Tokens,
@@ -230,6 +246,124 @@ const HelpSection = () => {
             <div className="space-y-2">
               <h1
                 className="text-lightOrange text-2xl mt-10 mb-4"
+                ref={enterYourSimpleTokenDetails}
+              >
+                Creating a Simple Token
+              </h1>
+              <ul className="list-none space-y-4 list-inside">
+                <li className="grid grid-cols-[auto_1fr] gap-4">
+                  <span>1.</span>
+                  <div ref={navigateToCreatingSimple}>
+                    <span className="font-bold">Navigate to</span>
+                    <ul className="list-disc list-inside mt-2">
+                      <li>
+                        Choose 'Simple' from the 3 button navigation at the top
+                        of the studio widget
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="grid grid-cols-[auto_1fr] gap-4">
+                  <span>2.</span>
+                  <div ref={enterYourSimpleTokenDetails}>
+                    <span className="font-bold">
+                      {" "}
+                      Enter your Simple Token details
+                    </span>
+                    <ul className="list-disc list-inside mt-2">
+                      <li>
+                        Choose and enter a name for your Simple Token in the
+                        field provided
+                      </li>
+                      <li>
+                        An option to enter a burn is provided if you wish your
+                        Simple Token creation transaction to have priority to be
+                        included in the next block when the Minima network is
+                        busy
+                      </li>
+                      <li>
+                        Optionally you can add decimal places required for your
+                        token where the default is 8 and maximum is 16
+                      </li>
+                      <li>
+                        Once you are happy with your Simple Token details,
+                        click/press the Review button
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li className="grid grid-cols-[auto_1fr] gap-4">
+                  <span>3.</span>
+                  <div ref={reviewYourSimpleTokenDetails}>
+                    <span className="font-bold">
+                      Review your Simple Token details
+                    </span>
+                    <ul className="list-disc list-inside mt-2">
+                      <li>
+                        A review of all your Simple Token details will be shown
+                        to you before your Simple Token is created
+                      </li>
+                      <li>
+                        If you are happy with the review, click/press the
+                        ‘Create’ button
+                      </li>
+                      <li>
+                        If you wish to edit the details fo your Simple Token, a
+                        back arrow can be found at the top of the page which
+                        will take you back to the previous page where you can
+                        edit the details of your Custom Token
+                      </li>
+                      <li>
+                        Should you wish to stop the creation of this Simple
+                        Token, or start the process again with a fresh page,
+                        click/press the ‘Cancel’ button
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li className="grid grid-cols-[auto_1fr] gap-4">
+                  <span>4.</span>
+                  <div ref={afterYourSimpleTokenCreation}>
+                    <span className="font-bold">
+                      After your Simple Token creation
+                    </span>
+                    <ul className="list-disc list-inside mt-2">
+                      <li>
+                        If your node is in read mode, you will be asked to
+                        navigate to the home screen of your Minima node and open
+                        the ‘Pending’ MiniDapp and approve the transaction
+                      </li>
+                      <li>
+                        If your node is in write mode, you Simple Token will be
+                        created
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+
+                <li className="grid grid-cols-[auto_1fr] gap-4">
+                  <span>5.</span>
+                  <div ref={whereIsYourSimpleToken}>
+                    <span className="font-bold">
+                      Where is your Simple Token?
+                    </span>
+                    <ul className="list-disc list-inside mt-2">
+                      <li>
+                        Once your Simple Token has been created, it will appear
+                        in your balance in your Minima node wallet ready to be
+                        stored away safely or transferred to Soko, the Minima
+                        NFT marketplace to be traded.
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div className="space-y-2">
+              <h1
+                className="text-lightOrange text-2xl mt-10 mb-4"
                 ref={enterYourCustomTokenDetails}
               >
                 Creating a Custom Token
@@ -237,7 +371,7 @@ const HelpSection = () => {
               <ul className="list-none space-y-4 list-inside">
                 <li className="grid grid-cols-[auto_1fr] gap-4">
                   <span>1.</span>
-                  <div ref={navigateToCreatingSimple}>
+                  <div ref={navigateToCreatingCustomToken}>
                     <span className="font-bold">Navigate to</span>
                     <ul className="list-disc list-inside mt-2">
                       <li>
@@ -249,7 +383,7 @@ const HelpSection = () => {
                 </li>
                 <li className="grid grid-cols-[auto_1fr] gap-4">
                   <span>2.</span>
-                  <div ref={enterYourSimpleTokenDetails}>
+                  <div ref={enterYourCustomTokenDetails}>
                     <span className="font-bold">
                       {" "}
                       Enter your Custom Token details
@@ -393,7 +527,7 @@ const HelpSection = () => {
             <div className="space-y-2">
               <h1
                 className="text-lightOrange text-2xl mt-10 mb-4"
-                ref={enterYourSimpleTokenDetails}
+                ref={enterYourNFTDetails}
               >
                 Creating an NFT
               </h1>
