@@ -94,7 +94,7 @@ export default function GettingStarted() {
               >
                 <div className="max-w-lg space-y-10">
                   <div className="space-y-2">
-                    <h3 className="text-black dark:text-white font-bold leading-12 text-center text-[24px] md:text-[40px] mb-6">
+                    <h3 className="text-black dark:text-white font-bold leading-[52px] text-center text-[24px] md:text-[40px] mb-6">
                       {currentTitle[step - 2]}
                     </h3>
 
@@ -119,7 +119,7 @@ export default function GettingStarted() {
                       type="button"
                       className="flex justify-center focus:outline-none items-center gap-2 w-full p-4 px-8 text-black bg-lightOrange hover:bg-lighterOrange rounded max-w-sm mx-auto"
                     >
-                      {step !== 6 ? "Next" : "Go to studio"}
+                      {step !== 6 ? "Next" : "Go to Token Studio"}
                     </button>
 
                     {step !== 6 && (
@@ -128,7 +128,7 @@ export default function GettingStarted() {
                           className="text-black dark:text-white hover:text-grey100 dark:hover:text-grey20 focus:outline-none"
                           to="/studio"
                         >
-                          Go to studio
+                          Go to Token Studio
                         </Link>
                       </div>
                     )}

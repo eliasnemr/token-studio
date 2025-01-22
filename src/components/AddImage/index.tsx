@@ -60,14 +60,14 @@ const AddImage = () => {
     <>
       <div
         onClick={() => fileInputRef.current?.click()}
-        className="bg-grey10 dark:bg-darkContrast flex-col flex items-center justify-center rounded py-16 gap-4 hover:bg-grey20 hover:dark:bg-lightDarkContrast"
+        className="bg-grey10 dark:bg-darkContrast flex-col flex items-center justify-center rounded py-16 gap-4 hover:bg-grey20 transition-colors hover:dark:bg-mediumDarkContrast"
       >
         {!formik.values.url && (
           <>
             <span>
               <UploadIcon fill="currentColor" size={40} />
             </span>
-            <p className="text-sm text-grey100 dark:text-grey80">
+            <p className="text-sm text-black dark:text-white">
               {!formik.values.url.length && "Upload image"}{" "}
               {!!formik.values.url.length && "Upload another image"}
             </p>
@@ -92,7 +92,7 @@ const AddImage = () => {
                 formik.setFieldValue("url", "");
               }}
               type="button"
-              className="text-grey100 dark:text-white appearance-none p-0 rounded-full bg-grey20 dark:bg-darkContrast border border-grey80 dark:border-darkContrastFour hover:bg-grey10 hover:dark:bg-lightDarkContrast w-[32px] h-[32px] flex items-center justify-center absolute right-4 bottom-3"
+              className="text-grey100 dark:text-white appearance-none p-0 rounded-full bg-grey20 dark:bg-darkContrast border border-grey80 dark:border-darkContrastFour hover:bg-grey10 hover:dark:bg-mediumDarkContrast w-[32px] h-[32px] flex items-center justify-center absolute right-4 bottom-3"
             >
               <RubbishIcon fill="currentColor" />
             </button>

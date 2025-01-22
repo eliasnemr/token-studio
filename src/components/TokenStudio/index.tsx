@@ -83,7 +83,12 @@ const TokenStudio = () => {
 
   return (
     <>
-      <div className="custom-scrollbar mt-0 pt-8 md:border-2 border-grey20  md:max-h-[80vh] dark:border-[#242424] bg-white dark:bg-black max-h-max md:mt-[60px] px-4 p-0 md:p-8 rounded w-full md:max-w-[648px] md:min-w-[648px] overflow-auto pb-10 mb-0 md:mb-10 overflow-x-none">
+      <div
+        className="mt-0 pt-8 md:border-2 border-grey20
+      dark:border-[#242424] bg-white dark:bg-black h-max md:mt-[60px]
+      px-4 p-0 md:p-8 rounded w-full md:max-w-[648px] md:min-w-[648px] overflow-auto pb-10 mb-0 md:mb-10
+      "
+      >
         <section>
           <Formik
             initialValues={{
@@ -474,11 +479,15 @@ const TokenStudio = () => {
                     .required("Field is required")
                     .matches(
                       /^[a-zA-Z0-9_]+$/,
-                      "Key can only contain letters, numbers, and underscores",
+                      "Attributes can only contain letters, numbers, and underscores",
                     )
-                    .max(50, "Key must be at most 50 characters"),
+                    .max(50, "Attribute must be at most 50 characters"),
                   value: yup
                     .string()
+                    .matches(
+                      /^[a-zA-Z0-9_]+$/,
+                      "Values can only contain letters, numbers, and underscores",
+                    )
                     .required("Field is required")
                     .max(255, "Value must be at most 255 characters"),
                 }),
@@ -720,10 +729,11 @@ const TokenStudio = () => {
                                 >
                                   Review
                                 </PrimaryButton>
-                                <SecondaryButton
+                                <button
                                   type="button"
                                   disabled={!isValid}
-                                  extraClass={`md:min-w-[120px] dark:bg-white hover:dark:bg-grey20 disabled:bg-grey20 dark:disabled:bg-darkContrastFour dark:disabled:text-black disabled:text-grey60 flex items-center justify-center ${copied && "!bg-green"}`}
+                                  className={`md:min-w-[120px] hover:bg-lightDarkContrast rounded-sm bg-black dark:text-black disabled:text-white dark:bg-white hover:dark:bg-grey20 disabled:bg-grey20 dark:disabled:bg-darkContrastFour dark:disabled:text-black disabled:text-grey60 flex
+                                   items-center justify-center ${copied && "!bg-green"}`}
                                   onClick={() => {
                                     if (
                                       mintOpt !== "custom" &&
@@ -788,7 +798,7 @@ const TokenStudio = () => {
                                       Copied <CopyIcon size={16} />
                                     </span>
                                   )}
-                                </SecondaryButton>
+                                </button>
                               </div>
                             </>
                           )}
@@ -966,10 +976,11 @@ const TokenStudio = () => {
                                 >
                                   Review
                                 </PrimaryButton>
-                                <SecondaryButton
+                                <button
                                   type="button"
                                   disabled={!isValid}
-                                  extraClass={`md:min-w-[120px] dark:bg-white hover:dark:bg-grey20 disabled:bg-grey20 dark:disabled:bg-darkContrastFour dark:disabled:text-black disabled:text-grey60 flex items-center justify-center ${copied && "!bg-green"}`}
+                                  className={`md:min-w-[120px] hover:bg-lightDarkContrast rounded-sm bg-black dark:text-black disabled:text-white dark:bg-white hover:dark:bg-grey20 disabled:bg-grey20 dark:disabled:bg-darkContrastFour dark:disabled:text-black disabled:text-grey60 flex
+                                   items-center justify-center ${copied && "!bg-green"}`}
                                   onClick={() => {
                                     if (
                                       mintOpt !== "custom" &&
@@ -1034,7 +1045,7 @@ const TokenStudio = () => {
                                       Copied <CopyIcon size={16} />
                                     </span>
                                   )}
-                                </SecondaryButton>
+                                </button>
                               </div>
                             </>
                           )}

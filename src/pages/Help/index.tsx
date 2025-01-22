@@ -56,7 +56,7 @@ const HelpSection = () => {
 
             <ul className="grid gap-4">
               <Link
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -66,7 +66,7 @@ const HelpSection = () => {
                 &#x2014; Navigate to
               </Link>
               <Link
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -76,7 +76,7 @@ const HelpSection = () => {
                 &#x2014; Enter your Simple Token Details
               </Link>
               <Link
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -86,7 +86,7 @@ const HelpSection = () => {
                 &#x2014; Review your Simple Token Details
               </Link>
               <Link
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -96,7 +96,7 @@ const HelpSection = () => {
                 &#x2014; After your Simple Token creation
               </Link>
               <Link
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 to="#"
                 onClick={(e) => {
                   e.preventDefault();
@@ -114,7 +114,7 @@ const HelpSection = () => {
             <ul className="grid gap-4">
               <Link
                 to="#"
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(navigateToCreatingCustomToken);
@@ -124,7 +124,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(enterYourCustomTokenDetails);
@@ -134,7 +134,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(reviewYourCustomTokenCreation);
@@ -144,7 +144,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(afterYourCustomTokenCreation);
@@ -154,7 +154,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(whereIsYourCustomToken);
@@ -171,7 +171,7 @@ const HelpSection = () => {
             <ul className="grid gap-4">
               <Link
                 to="#"
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(navigateToNFT);
@@ -181,7 +181,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(enterYourNFTDetails);
@@ -191,7 +191,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(reviewYourNFTDetails);
@@ -201,7 +201,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(afterYourNFTCreation);
@@ -211,7 +211,7 @@ const HelpSection = () => {
               </Link>
               <Link
                 to="#"
-                className="text-black dark:text-grey20 hover:text-grey100 dark:hover:text-grey10"
+                className="text-black dark:text-grey40 hover:text-grey100 dark:hover:text-grey60"
                 onClick={(e) => {
                   e.preventDefault();
                   scrollToSection(whereIsMyNFT);

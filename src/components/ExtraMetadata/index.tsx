@@ -1,7 +1,7 @@
 import { useFormikContext } from "formik";
 import { useState } from "react";
-import { errorTextStyle } from "../../styles";
 import Tooltip from "../Tooltip";
+import AddIcon from "../Icons/AddIcon";
 
 function ExtraMetadataFields({ values }) {
   const [newKey, setNewKey] = useState("");
@@ -28,15 +28,15 @@ function ExtraMetadataFields({ values }) {
 
   return (
     <>
-      <div className="grid grid-cols-3 items-center">
-        <hr className="border border-grey20 dark:border-darkContrastFour" />
-        <div className="flex gap-2 relative px-4 items-center">
-          <label className="text-xs text-center text-black dark:text-white">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center">
+        <hr className="border border-grey20 dark:border-darkContrastFour m-auto w-full" />
+        <div className="flex gap-2 px-4 items-center">
+          <label className="text-xs text-center text-black dark:text-white shrink-0">
             Add Additional Metadata
           </label>
           <Tooltip
             content="Add extra attributes to your token / NFT"
-            extraClass="-right-4 top-6"
+            extraClass="-right-[14px] top-[20px]"
           >
             <span className="text-[#91919D] hover:text-[#D3D3D8] dark:text-grey100 hover:dark:text-grey25">
               <svg
@@ -55,7 +55,7 @@ function ExtraMetadataFields({ values }) {
             </span>
           </Tooltip>
         </div>
-        <hr className="border border-grey20 dark:border-darkContrastFour" />
+        <hr className="border border-grey20 dark:border-darkContrastFour m-auto w-full" />
       </div>
       <div className="space-y-4 mt-2">
         <div className="space-y-0 space-x-2 flex">
@@ -64,21 +64,22 @@ function ExtraMetadataFields({ values }) {
             placeholder="Attribute (e.g. Color, Size, Material)"
             value={newKey}
             onChange={(e) => setNewKey(e.target.value)}
-            className=" min-w-0 text-black bg-grey10 dark:bg-darkContrast dark:text-grey80 outline-none py-3 px-4 flex-grow"
+            className=" dark:text-white min-w-0 text-black bg-grey10 dark:bg-darkContrast dark:text-grey80 outline-none py-3 px-4 flex-grow"
           />
           <input
             type="text"
             placeholder="Value (e.g. red, large, wool)"
             value={newValue}
             onChange={(e) => setNewValue(e.target.value)}
-            className="min-w-0 text-black bg-grey10 dark:bg-darkContrast dark:text-grey80 outline-none py-3 px-4 flex-grow"
+            className="dark:text-white min-w-0 text-black bg-grey10 dark:bg-darkContrast dark:text-grey80 outline-none py-3 px-4 flex-grow"
           />
           <button
             type="button"
-            className="min-w-[32px] p-0 appearance-none outline-none focus:outline-none hover:opacity-80"
+            className="min-w-[32px]  p-0 appearance-none outline-none focus:outline-none text-darkContrast hover:text-mediumDarkContrast dark:text-white disabled:text-grey20 dark:disabled:text-darkContrastFour"
+            disabled={newKey.length === 0 || newValue.length === 0}
             onClick={addMetadata}
           >
-            <img alt="add-circle" src="./assets/add_circle.svg" />
+            <AddIcon size={26} />
           </button>
         </div>
 
@@ -89,13 +90,13 @@ function ExtraMetadataFields({ values }) {
                 type="text"
                 value={item.key}
                 disabled
-                className="min-w-0 text-black bg-grey10 dark:bg-darkContrast dark:text-white outline-none py-3 px-4 flex-1 flex-grow"
+                className={`${errors.extraMetadata && errors.extraMetadata[index]?.key && "border border-red"} min-w-0 text-black bg-grey10 dark:bg-darkContrast dark:text-white outline-none py-3 px-4 flex-1 flex-grow`}
               />
               <input
                 type="text"
                 value={item.value}
                 disabled
-                className="min-w-0 text-black bg-grey10 dark:bg-darkContrast dark:text-white outline-none py-3 px-4 flex-1 flex-grow"
+                className={`${errors.extraMetadata && errors.extraMetadata[index]?.value && "border border-red"} min-w-0 text-black bg-grey10 dark:bg-darkContrast dark:text-white outline-none py-3 px-4 flex-1 flex-grow`}
               />
               <button
                 type="button"
@@ -106,12 +107,16 @@ function ExtraMetadataFields({ values }) {
               </button>
             </div>
             {errors.extraMetadata && errors.extraMetadata[index] && (
-              <div className={errorTextStyle}>
+              <div>
                 {errors.extraMetadata[index].key && (
-                  <p>{errors.extraMetadata[index].key}</p>
+                  <p className="text-sm text-red pt-4">
+                    {errors.extraMetadata[index].key}
+                  </p>
                 )}
                 {errors.extraMetadata[index].value && (
-                  <p>{errors.extraMetadata[index].value}</p>
+                  <p className="text-sm text-red pt-4">
+                    {errors.extraMetadata[index].value}
+                  </p>
                 )}
               </div>
             )}

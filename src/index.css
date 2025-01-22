@@ -91,7 +91,7 @@ button {
 }
 button:focus,
 button:focus-visible {
-  outline: 1px auto white;
+  outline: none;
 }
 
 .custom-scrollbar::-webkit-scrollbar {

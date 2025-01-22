@@ -24,7 +24,7 @@ const Tooltip: React.FC<TooltipProps> = ({ content, children, extraClass }) => {
       {isVisible && (
         <div
           ref={tooltipRef}
-          className={`absolute z-50 w-64 p-3 text-sm text-black dark:text-white bg-grey20 dark:bg-darkContrastFour  rounded-lg shadow-lg backdrop-blur-sm transition-opacity duration-200 right-0 top-full mt-2 ${extraClass && extraClass}`}
+          className={`absolute z-50 w-64 p-3 text-sm text-black dark:text-white bg-grey20 dark:bg-darkContrastFour rounded-lg shadow-lg backdrop-blur-sm transition-opacity duration-200 right-[1px] top-full mt-2 ${extraClass && extraClass}`}
           style={{
             opacity: isVisible ? 1 : 0,
           }}
