@@ -2,7 +2,7 @@
   "name": "token-studio",
   "description": "Create simple, custom and non-fungible tokens",
   "private": true,
-  "version": "0.8.0-beta",
+  "version": "0.8.1-beta",
   "type": "module",
   "scripts": {
     "dev": "vite",
