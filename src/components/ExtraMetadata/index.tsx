@@ -36,7 +36,7 @@ function ExtraMetadataFields({ values }) {
           </label>
           <Tooltip
             content="Add extra attributes to your token / NFT"
-            extraClass="-right-[14px] top-[20px]"
+            extraClass="!-right-[14px] !top-[20px]"
           >
             <span className="text-[#91919D] hover:text-[#D3D3D8] dark:text-grey100 hover:dark:text-grey25">
               <svg
