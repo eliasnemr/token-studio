@@ -18,7 +18,7 @@ const AppProvider = ({ children }: IProps) => {
   const [blockNumber, setBlockNumber] = useState<null | number>(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Initialize state based on localStorage
-    return localStorage.getItem("dark-mode-pub") === "true";
+    return localStorage.getItem("dark-mode-tstudio") === "true";
   });
   const [_currencyFormat, setCurrencyFormat] = useState<{
     decimal: string;
@@ -57,10 +57,10 @@ const AppProvider = ({ children }: IProps) => {
     // Apply or remove the 'dark' class on the document element
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
-      localStorage.setItem("dark-mode-pub", "true");
+      localStorage.setItem("dark-mode-tstudio", "true");
     } else {
       document.documentElement.classList.remove("dark");
-      localStorage.setItem("dark-mode-pub", "false");
+      localStorage.setItem("dark-mode-tstudio", "false");
     }
   }, [isDarkMode]); // Re-run effect when isDarkMode changes
 

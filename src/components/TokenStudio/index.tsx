@@ -10,7 +10,6 @@ import AddImage from "../AddImage";
 import PrimaryButton from "../PrimaryButton";
 import { isValidURLAll, isValidURLSecureOnly } from "../../utils/functions";
 import ExtraMetadataFields from "../ExtraMetadata";
-import SecondaryButton from "../SecondaryButton";
 import copyToClipboard from "../../utils/copyToClipboard";
 import { CopyIcon } from "lucide-react";
 import { Input } from "../Input";
