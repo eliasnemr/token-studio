@@ -17,8 +17,14 @@ const AppProvider = ({ children }: IProps) => {
   const balanceProps = useMinimaWallet(loaded);
   const [blockNumber, setBlockNumber] = useState<null | number>(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Initialize state based on localStorage
-    return localStorage.getItem("dark-mode-tstudio") === "true";
+    // Check if we're in a browser environment
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("dark-mode-tstudio");
+      // If there's no stored value (first-time user), default to true (dark mode)
+      return stored === null ? true : stored === "true";
+    }
+    // Default to true if not in browser (e.g., during SSR)
+    return true;
   });
   const [_currencyFormat, setCurrencyFormat] = useState<{
     decimal: string;
