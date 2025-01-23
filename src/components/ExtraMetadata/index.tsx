@@ -1,13 +1,26 @@
 import { useFormikContext } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Tooltip from "../Tooltip";
 import AddIcon from "../Icons/AddIcon";
+import * as yup from "yup";
+import CloseIcon from "../Icons/CloseIcon";
+
+const checkInputSchema = yup
+  .string()
+  .required("Field is required")
+  .matches(
+    /^[a-zA-Z0-9_]+$/,
+    "Attributes can only contain letters, numbers, and underscores",
+  )
+  .max(50, "Attribute must be at most 50 characters");
 
 function ExtraMetadataFields({ values }) {
   const [newKey, setNewKey] = useState("");
   const [newValue, setNewValue] = useState("");
 
   const formik: any = useFormikContext();
+
+  const [isValid, setInvalidInputs] = useState(false);
   const { setFieldValue, errors } = formik;
 
   const addMetadata = () => {
@@ -25,6 +38,19 @@ function ExtraMetadataFields({ values }) {
     const updatedMetadata = values.extraMetadata.filter((_, i) => i !== index);
     setFieldValue("extraMetadata", updatedMetadata);
   };
+
+  useEffect(() => {
+    setInvalidInputs(false);
+    try {
+      checkInputSchema.validateSync(newKey);
+      checkInputSchema.validateSync(newValue);
+
+      setInvalidInputs(true);
+    } catch (err) {
+      console.error(err);
+      setInvalidInputs(false);
+    }
+  }, [newKey, newValue]);
 
   return (
     <>
@@ -73,15 +99,20 @@ function ExtraMetadataFields({ values }) {
             onChange={(e) => setNewValue(e.target.value)}
             className="dark:text-white min-w-0 text-black bg-grey10 dark:bg-darkContrast dark:text-grey80 outline-none py-3 px-4 flex-grow"
           />
+
           <button
             type="button"
-            className="min-w-[32px]  p-0 appearance-none outline-none focus:outline-none text-darkContrast hover:text-mediumDarkContrast dark:text-white disabled:text-grey20 dark:disabled:text-darkContrastFour"
-            disabled={newKey.length === 0 || newValue.length === 0}
+            className="min-w-[32px]  p-0 appearance-none outline-none focus:outline-none text-darkContrast hover:!text-lightDarkContrast hover:dark:!text-grey20 dark:text-white disabled:!text-grey20 dark:disabled:!text-darkContrastFour "
+            disabled={newKey.length === 0 || newValue.length === 0 || !isValid}
             onClick={addMetadata}
           >
             <AddIcon size={26} />
           </button>
         </div>
+
+        {!isValid && !!newKey.length && !!newValue.length && (
+          <p className="text-sm text-red">Invalid characters</p>
+        )}
 
         {values.extraMetadata.map((item, index) => (
           <div key={index}>
@@ -100,12 +131,13 @@ function ExtraMetadataFields({ values }) {
               />
               <button
                 type="button"
-                className="min-w-[32px] p-0 appearance-none outline-none focus:outline-none hover:opacity-80"
+                className="min-w-[32px] p-0 appearance-none outline-none focus:outline-none text-lightOrange hover:text-lighterOrange"
                 onClick={() => removeMetadata(index)}
               >
-                <img alt="cancel" src="./assets/cancel.svg" />
+                <CloseIcon size={26} />
               </button>
             </div>
+
             {errors.extraMetadata && errors.extraMetadata[index] && (
               <div>
                 {errors.extraMetadata[index].key && (

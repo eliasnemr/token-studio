@@ -403,6 +403,12 @@ const TokenStudio = () => {
                       return true;
                     }
 
+                    if (!wallet || wallet.length === 0) {
+                      throw new Error(
+                        "Your wallet balance is unavailable, is your app connected to the internet?",
+                      );
+                    }
+
                     if (new Decimal(val).greaterThan(wallet[0].sendable)) {
                       throw new Error("Insufficient funds");
                     }
@@ -505,6 +511,7 @@ const TokenStudio = () => {
               handleSubmit,
               setErrors,
               setTouched,
+              resetForm,
             }) => (
               <>
                 {reviewing && (
@@ -561,8 +568,7 @@ const TokenStudio = () => {
                                       checked={mintOpt === "default"}
                                       onChange={(e) => {
                                         handleOptionChange("form", e);
-                                        setErrors({});
-                                        setTouched({});
+                                        resetForm();
                                       }}
                                       className="hidden"
                                     />
@@ -589,9 +595,7 @@ const TokenStudio = () => {
 
                                         setImageUploadOption("file");
 
-                                        setErrors({});
-                                        setTouched({});
-                                        setFieldValue("url", "");
+                                        resetForm();
                                       }}
                                       className="hidden"
                                     />
@@ -617,10 +621,8 @@ const TokenStudio = () => {
                                         handleOptionChange("form", e);
 
                                         setImageUploadOption("url");
-                                        setErrors({});
-                                        setTouched({});
 
-                                        setFieldValue("url", "");
+                                        resetForm();
                                       }}
                                       className="hidden"
                                     />
@@ -639,18 +641,17 @@ const TokenStudio = () => {
                             {mintOpt === "default" && (
                               <p>
                                 Create a simple token without an image. The
-                                token will have a fixed supply and be divisible
-                                to 8 decimal places. It will not be possible to
-                                mint more of this token after creation.
+                                token will have a fixed supply. It will not be
+                                possible to mint more of this token after
+                                creation.
                               </p>
                             )}
                             {mintOpt === "custom" && (
                               <p>
                                 Create a custom token with an image and
                                 additional information. The token will have a
-                                fixed supply and be divisible to 8 decimal
-                                places. It will not be possible to mint more of
-                                this token after creation.
+                                fixed supply. It will not be possible to mint
+                                more of this token after creation.
                               </p>
                             )}
                             {mintOpt === "nft" && (
@@ -709,7 +710,7 @@ const TokenStudio = () => {
                                   type="text"
                                   label="Add a burn"
                                   placeholder="Burn"
-                                  info="(optional) You can ensure your transaction enters in the next block by adding a network fee amount"
+                                  info="Ensure the transaction to mint this token is included in the next block by adding a network fee (burn), paid in Minima"
                                   value={values.burn}
                                   onChange={handleChange}
                                   onBlur={handleBlur}
@@ -825,6 +826,7 @@ const TokenStudio = () => {
                                     type="text"
                                     label="Image URL"
                                     placeholder="Enter an image URL"
+                                    info="The URL to a publicly viewable image for your token."
                                     value={values.url}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
@@ -853,6 +855,7 @@ const TokenStudio = () => {
                                   type="number"
                                   label="Total supply"
                                   placeholder="Enter a total supply for your token"
+                                  info="The total number of tokens to be created. "
                                   value={values.amount}
                                   onChange={handleChange}
                                   onBlur={handleBlur}
@@ -882,6 +885,7 @@ const TokenStudio = () => {
                                     type="string"
                                     label="Decimals"
                                     placeholder="Enter total decimal places"
+                                    info="The number of decimal places your token will have. Between 1-16."
                                     value={values.decimals}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
@@ -911,7 +915,7 @@ const TokenStudio = () => {
                                   type="text"
                                   label="Add a burn"
                                   placeholder="Burn"
-                                  info="(optional) You can ensure your transaction enters in the next block by adding a network fee amount"
+                                  info="Ensure the transaction to mint this token is included in the next block by adding a network fee (burn), paid in Minima"
                                   value={values.burn}
                                   onChange={handleChange}
                                   onBlur={handleBlur}
@@ -951,9 +955,7 @@ const TokenStudio = () => {
                                     type="text"
                                     label="Web validation URL"
                                     placeholder="Enter a web address"
-                                    info="Hosting a .txt file on your webpage with
-                                      the tokenid of this token after it is
-                                      minted will validate its authenticity"
+                                    info="To validate the authenticity of your token, you can host a .txt file on your website that contains the token ID of your token (token ID will be provided after creation) "
                                     value={values.webvalidation}
                                     onChange={handleChange}
                                     onBlur={handleBlur}

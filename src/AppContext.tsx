@@ -49,6 +49,10 @@ const AppProvider = ({ children }: IProps) => {
         if (msg.event === "NEWBLOCK") {
           setBlockNumber(msg.data.txpow.header.block);
         }
+
+        if (msg.event === "NEWBALANCE") {
+          balanceProps.getBalance();
+        }
       });
     }
   }, [loaded]);
