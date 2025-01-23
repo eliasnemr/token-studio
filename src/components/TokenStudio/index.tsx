@@ -509,8 +509,6 @@ const TokenStudio = () => {
               handleChange,
               handleBlur,
               handleSubmit,
-              setErrors,
-              setTouched,
               resetForm,
             }) => (
               <>
