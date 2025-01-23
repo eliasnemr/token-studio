@@ -43,6 +43,10 @@ const Review = () => {
             <h3 className="text-black dark:text-grey80">Total supply</h3>
             <p className="text-black dark:text-white">{values.amount}</p>
           </div>
+          <div>
+            <h3 className="text-black dark:text-grey80">Decimals</h3>
+            <p className="text-black dark:text-white">{values.decimals}</p>
+          </div>
 
           {mintOpt !== "default" && !!values.description.length && (
             <div>
