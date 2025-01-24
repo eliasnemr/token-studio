@@ -16,6 +16,7 @@ import { Input } from "../Input";
 import Review from "../Review";
 import { AnimatePresence, motion } from "framer-motion";
 import ImageUploadSelect from "../ImageUploadSelect";
+import DesktopImageUploadSelect from "../DesktopImageUploadSelect";
 
 const TokenStudio = () => {
   const {
@@ -30,6 +31,7 @@ const TokenStudio = () => {
     setMintOpts,
     reviewing,
     toggleReview,
+    isMobile,
   } = useContext(appContext);
 
   const [imageUploadOption, setImageUploadOption] = useState<"file" | "url">(
@@ -805,15 +807,29 @@ const TokenStudio = () => {
                             <>
                               <div className="my-4 space-y-4">
                                 {mintOpt !== "nft" && (
-                                  <ImageUploadSelect
-                                    mintOpt={mintOpt}
-                                    imageUploadOption={imageUploadOption}
-                                    handleOptionChange={(e: "url" | "file") =>
-                                      setImageUploadOption(e)
-                                    }
-                                    setFieldValue={setFieldValue}
-                                    values={values}
-                                  />
+                                  <>
+                                    {isMobile ? (
+                                      <ImageUploadSelect
+                                        mintOpt={mintOpt}
+                                        imageUploadOption={imageUploadOption}
+                                        handleOptionChange={(
+                                          e: "url" | "file",
+                                        ) => setImageUploadOption(e)}
+                                        setFieldValue={setFieldValue}
+                                        values={values}
+                                      />
+                                    ) : (
+                                      <DesktopImageUploadSelect
+                                        mintOpt={mintOpt}
+                                        imageUploadOption={imageUploadOption}
+                                        handleOptionChange={(
+                                          e: "url" | "file",
+                                        ) => setImageUploadOption(e)}
+                                        setFieldValue={setFieldValue}
+                                        values={values}
+                                      />
+                                    )}
+                                  </>
                                 )}
 
                                 {imageUploadOption === "file" && <AddImage />}
