@@ -94,7 +94,7 @@ export default function GettingStarted() {
               >
                 <div className="max-w-lg space-y-10">
                   <div className="space-y-2">
-                    <h3 className="text-black dark:text-white font-bold leading-[52px] text-center text-[24px] md:text-[40px] mb-6">
+                    <h3 className="text-black dark:text-white font-bold leading-[40px] md:leading-[52px] text-center text-[24px] md:text-[40px] mb-6">
                       {currentTitle[step - 2]}
                     </h3>
 

@@ -60,7 +60,7 @@ const AddImage = () => {
     <>
       <div
         onClick={() => fileInputRef.current?.click()}
-        className={`bg-grey10 dark:bg-darkContrast flex-col flex items-center justify-center rounded py-16 gap-4 hover:bg-grey20 transition-colors hover:dark:bg-mediumDarkContrast ${!!formik.values.url.length && "hover:bg-grey10 hover:dark:bg-darkContrast"}`}
+        className={`bg-grey10 dark:bg-darkContrast flex-col flex items-center justify-center rounded py-16 gap-4 hover:bg-grey20 transition-colors hover:dark:bg-mediumDarkContrast ${!!formik.values.url.length && "hover:!bg-grey10 hover:dark:!bg-darkContrast"}`}
       >
         {!formik.values.url && (
           <>

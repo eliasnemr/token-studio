@@ -36,7 +36,7 @@ const MobileMenu = () => {
           type="button"
           className="p-0 outline-none focus:outline-none text-black dark:text-white hover:text-grey80 dark:hover:text-grey20 text-2xl font-medium"
         >
-          {isDarkMode ? "Dark mode" : "Light mode"}
+          {isDarkMode ? "Light mode" : "Dark mode"}
         </button>
       </nav>
     </div>
