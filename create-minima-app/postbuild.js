@@ -12,7 +12,7 @@ function capitalize(str) {
 
 const packageJsonAsString = fs.readFileSync(
   __dirname + "/../package.json",
-  "utf-8"
+  "utf-8",
 );
 const packageJson = JSON.parse(packageJsonAsString);
 
@@ -23,3 +23,24 @@ dAppConf = dAppConf.replace("{{version}}", packageJson.version);
 dAppConf = dAppConf.replace("{{description}}", packageJson.description);
 
 fs.writeFileSync("./build/dapp.conf", dAppConf);
+
+// Process CHANGELOGS.md
+const changelogPath = path.join(__dirname, "..", "CHANGELOGS.md");
+const buildChangelogPath = "./build/CHANGELOGS.md";
+
+let changelogContent;
+
+if (fs.existsSync(changelogPath)) {
+  // If CHANGELOG.md exists, read its content
+  changelogContent = fs.readFileSync(changelogPath, "utf-8");
+} else {
+  // If CHANGELOG.md doesn't exist, create a basic one
+  changelogContent = `# Changelog
+
+## [${packageJson.version}] - ${new Date().toISOString().split("T")[0]}
+- Initial release
+`;
+}
+
+// Write CHANGELOG.md to build folder
+fs.writeFileSync(buildChangelogPath, changelogContent);
