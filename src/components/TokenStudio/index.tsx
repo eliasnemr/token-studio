@@ -485,14 +485,14 @@ const TokenStudio = () => {
                     .string()
                     .required("Field is required")
                     .matches(
-                      /^[a-zA-Z0-9_]+$/,
+                      /^[^\\;]+$/,
                       "Attributes can only contain letters, numbers, and underscores",
                     )
                     .max(50, "Attribute must be at most 50 characters"),
                   value: yup
                     .string()
                     .matches(
-                      /^[a-zA-Z0-9_]+$/,
+                      /^[^\\;]+$/,
                       "Values can only contain letters, numbers, and underscores",
                     )
                     .required("Field is required")
