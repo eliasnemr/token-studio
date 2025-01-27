@@ -8,10 +8,7 @@ import CloseIcon from "../Icons/CloseIcon";
 const checkInputSchema = yup
   .string()
   .required("Field is required")
-  .matches(
-    /^[a-zA-Z0-9_]+$/,
-    "Attributes can only contain letters, numbers, and underscores",
-  )
+  .matches(/^[^\\;]+$/, "Invalid character")
   .max(50, "Attribute must be at most 50 characters");
 
 function ExtraMetadataFields({ values }) {
