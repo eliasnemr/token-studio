@@ -20,11 +20,7 @@ const Review = () => {
           className="focus:outline-none appearance-none outline-none p-0 flex gap-2 items-center text-black dark:text-white hover:text-grey80 hover:dark:text-grey80"
         >
           <BackIcon size={20} fill="currentColor" />
-          <span className=" text-sm">
-            {mintOpt === "default" && "Simple"}
-            {mintOpt === "custom" && "Custom"}
-            {mintOpt === "nft" && "NFT"}
-          </span>
+          <span className=" text-sm">Edit</span>
         </button>
 
         <div className=" space-y-4">
@@ -113,7 +109,7 @@ const Review = () => {
             type="button"
             className="focus:outline-none appearance-none outline-none text-black dark:text-white hover:text-lightDarkContrast dark:hover:text-grey80"
           >
-            Cancel
+            Cancel creation
           </button>
         </div>
       </div>
