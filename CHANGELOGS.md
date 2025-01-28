@@ -16,3 +16,7 @@
 - Node locked check
 - Make extra metadata more lenient
 - design tweak
+
+##### [1.2.0] - 28 January 25
+
+- Update copy on review page
