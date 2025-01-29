@@ -68,7 +68,7 @@ const AddImage = () => {
               <UploadIcon fill="currentColor" size={40} />
             </span>
             <p className="text-sm text-black dark:text-white">
-              {!formik.values.url.length && "Upload image"}{" "}
+              {!formik.values.url.length && "Upload image (on-chain)"}{" "}
               {!!formik.values.url.length && "Upload another image"}
             </p>
           </>

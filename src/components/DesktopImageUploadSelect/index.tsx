@@ -65,7 +65,7 @@ export default function CustomImageUploadSelect({
         aria-expanded={isOpen}
       >
         <span className="text-black dark:text-white">
-          {imageUploadOption === "file" ? "Upload image" : "URL"}
+          {imageUploadOption === "file" ? "Upload image (on-chain)" : "URL"}
         </span>
 
         <span className="text-grey60">
@@ -105,7 +105,7 @@ export default function CustomImageUploadSelect({
               role="option"
               aria-selected={imageUploadOption === "file"}
             >
-              Upload image
+              Upload image (on-chain)
             </div>
           )}
           {imageUploadOption !== "url" && (
