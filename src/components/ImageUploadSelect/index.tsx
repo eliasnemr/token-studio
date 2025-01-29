@@ -5,7 +5,7 @@ import React from "react";
 interface ImageUploadSelectProps {
   mintOpt: string;
   imageUploadOption: string;
-  handleOptionChange: (value: "file" | "url") => void;
+  handleOptionChange: (value: "file" | "url" | "custom") => void;
   setFieldValue: (field: string, value: string) => void;
   values: {
     url: string;
@@ -20,7 +20,7 @@ export default function ImageUploadSelect({
   values,
 }: ImageUploadSelectProps) {
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    handleOptionChange(e.target.value as "file" | "url");
+    handleOptionChange(e.target.value as "file" | "url" | "custom");
     if (values.url.length) {
       setFieldValue("url", "");
     }
@@ -47,7 +47,8 @@ export default function ImageUploadSelect({
           cursor-pointer
         `}
       >
-        <option value="file">Upload image</option>
+        <option value="file">Upload image on-chain</option>
+        <option value="custom">Custom image on-chain</option>
         <option value="url">URL</option>
       </select>
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-black dark:text-grey100">

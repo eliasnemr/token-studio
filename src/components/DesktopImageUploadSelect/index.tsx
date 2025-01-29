@@ -5,7 +5,7 @@ import React from "react";
 interface ImageUploadSelectProps {
   mintOpt: string;
   imageUploadOption: string;
-  handleOptionChange: (value: "file" | "url") => void;
+  handleOptionChange: (value: "file" | "url" | "custom") => void;
   setFieldValue: (field: string, value: string) => void;
   values: {
     url: string;
@@ -22,7 +22,7 @@ export default function CustomImageUploadSelect({
   const [isOpen, setIsOpen] = React.useState(false);
   const selectRef = React.useRef<HTMLDivElement>(null);
 
-  const handleSelect = (value: "file" | "url") => {
+  const handleSelect = (value: "file" | "url" | "custom") => {
     handleOptionChange(value);
     if (values.url.length) {
       setFieldValue("url", "");
@@ -65,7 +65,11 @@ export default function CustomImageUploadSelect({
         aria-expanded={isOpen}
       >
         <span className="text-black dark:text-white">
-          {imageUploadOption === "file" ? "Upload image" : "URL"}
+          {imageUploadOption === "file"
+            ? "Upload image on-chain"
+            : imageUploadOption === "url"
+              ? "URL"
+              : "Create custom on-chain image"}
         </span>
 
         <span className="text-grey60">
@@ -105,7 +109,22 @@ export default function CustomImageUploadSelect({
               role="option"
               aria-selected={imageUploadOption === "file"}
             >
-              Upload image
+              Upload image on-chain
+            </div>
+          )}
+          {imageUploadOption !== "custom" && (
+            <div
+              className={`
+              px-6 py-4 cursor-pointer
+              transition-colors duration-200
+                hover:bg-grey20  dark:bg-darkContrast
+              ${imageUploadOption === "url" ? "bg-grey10 dark:bg-mediumDarkContrast" : ""}
+            `}
+              onClick={() => handleSelect("custom")}
+              role="option"
+              aria-selected={imageUploadOption === "custom"}
+            >
+              Custom on-chain image
             </div>
           )}
           {imageUploadOption !== "url" && (

@@ -17,6 +17,7 @@ import Review from "../Review";
 import { AnimatePresence, motion } from "framer-motion";
 import ImageUploadSelect from "../ImageUploadSelect";
 import DesktopImageUploadSelect from "../DesktopImageUploadSelect";
+import SVGGenerator from "../SVGGenerator";
 
 const TokenStudio = () => {
   const {
@@ -34,9 +35,9 @@ const TokenStudio = () => {
     isMobile,
   } = useContext(appContext);
 
-  const [imageUploadOption, setImageUploadOption] = useState<"file" | "url">(
-    "file",
-  );
+  const [imageUploadOption, setImageUploadOption] = useState<
+    "file" | "url" | "custom"
+  >("file");
   const [searchParams] = useSearchParams();
 
   const [copied, setCopied] = useState(false);
@@ -823,7 +824,7 @@ const TokenStudio = () => {
                                         mintOpt={mintOpt}
                                         imageUploadOption={imageUploadOption}
                                         handleOptionChange={(
-                                          e: "url" | "file",
+                                          e: "url" | "file" | "custom",
                                         ) => setImageUploadOption(e)}
                                         setFieldValue={setFieldValue}
                                         values={values}
@@ -847,6 +848,9 @@ const TokenStudio = () => {
                                     error={errors.url}
                                     touched={touched.url}
                                   />
+                                )}
+                                {imageUploadOption === "custom" && (
+                                  <SVGGenerator />
                                 )}
                               </div>
 
