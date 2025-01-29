@@ -734,7 +734,7 @@ const TokenStudio = () => {
                                       mintOpt !== "nft"
                                     ) {
                                       handleCopy(
-                                        `tokencreate name:${values.name} amount:${values.amount} decimals:8`,
+                                        `tokencreate name:${values.name} amount:${values.amount} decimals:${values.decimals}`,
                                       );
                                     }
 
@@ -757,7 +757,7 @@ const TokenStudio = () => {
                                       handleCopy(
                                         `tokencreate name:${JSON.stringify(
                                           token,
-                                        )} amount:${values.amount} decimals:8`,
+                                        )} amount:${values.amount} decimals:${values.decimals}`,
                                       );
                                     }
 
@@ -996,7 +996,7 @@ const TokenStudio = () => {
                                       mintOpt !== "nft"
                                     ) {
                                       handleCopy(
-                                        `tokencreate name:${values.name} amount:${values.amount} decimals:8`,
+                                        `tokencreate name:${values.name} amount:${values.amount} decimals:${values.decimals}`,
                                       );
                                     }
 
@@ -1019,7 +1019,7 @@ const TokenStudio = () => {
                                       handleCopy(
                                         `tokencreate name:${JSON.stringify(
                                           token,
-                                        )} amount:${values.amount} decimals:8`,
+                                        )} amount:${values.amount} decimals:${values.decimals}`,
                                       );
                                     }
 

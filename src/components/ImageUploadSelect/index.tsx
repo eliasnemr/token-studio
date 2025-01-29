@@ -47,7 +47,7 @@ export default function ImageUploadSelect({
           cursor-pointer
         `}
       >
-        <option value="file">Upload image</option>
+        <option value="file">Upload image (on-chain)</option>
         <option value="url">URL</option>
       </select>
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-6 text-black dark:text-grey100">

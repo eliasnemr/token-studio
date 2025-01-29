@@ -20,3 +20,8 @@
 ##### [1.2.0] - 28 January 25
 
 - Update copy on review page
+
+##### [1.2.0] - 29 January 25
+
+- Update copy on image upload
+- Add correct decimals to copy CLI for custom & simple tokens 
