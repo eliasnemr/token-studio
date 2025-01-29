@@ -21,7 +21,7 @@
 
 - Update copy on review page
 
-##### [1.2.0] - 29 January 25
+##### [1.3.0] - 29 January 25
 
 - Update copy on image upload
 - Add correct decimals to copy CLI for custom & simple tokens 
