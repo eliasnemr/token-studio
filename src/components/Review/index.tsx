@@ -32,7 +32,14 @@ const Review = () => {
 
         <div className="bg-grey20 dark:bg-darkContrast rounded p-4 space-y-6">
           {mintOpt !== "default" && !!values.url.length && (
-            <PreviewToken url={values.url} />
+            <PreviewToken url={values.url} mimeType={values.mimeType} />
+          )}
+
+          {values.mimeType.length && (
+            <div>
+              <h3 className="text-black dark:text-grey80">Image mime type</h3>
+              <p className="text-black dark:text-white">{values.mimeType}</p>
+            </div>
           )}
 
           <div>

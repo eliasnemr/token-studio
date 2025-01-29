@@ -104,6 +104,7 @@ const TokenStudio = () => {
               owner: "",
               webvalidation: "",
               extraMetadata: [],
+              mimeType: "",
             }}
             onSubmit={async (
               {
@@ -117,6 +118,7 @@ const TokenStudio = () => {
                 webvalidation,
                 owner,
                 extraMetadata,
+                mimeType,
               },
               { resetForm },
             ) => {
@@ -171,6 +173,7 @@ const TokenStudio = () => {
                         acc[key] = value;
                         return acc;
                       }, {}),
+                      mimeType: mimeType,
                     };
 
                     (window as any).MDS.cmd(
@@ -345,9 +348,16 @@ const TokenStudio = () => {
                         "check-my-url",
                         "Enter a valid URL",
                         function (val) {
-                          const { path, createError } = this;
+                          const { path, parent, createError } = this;
 
                           if (!val) {
+                            return true;
+                          }
+
+                          if (
+                            parent.mimeType &&
+                            parent.mimeType.includes("svg")
+                          ) {
                             return true;
                           }
 
@@ -752,6 +762,7 @@ const TokenStudio = () => {
                                         description: values.description,
                                         ticker: values.ticker,
                                         webvalidate: values.webvalidation,
+                                        mimeType: values.mimeType,
                                         ...values.extraMetadata.reduce(
                                           (acc, { key, value }) => {
                                             acc[key] = value;
@@ -1017,6 +1028,7 @@ const TokenStudio = () => {
                                         description: values.description,
                                         ticker: values.ticker,
                                         webvalidate: values.webvalidation,
+                                        mimeType: values.mimeType,
                                         ...values.extraMetadata.reduce(
                                           (acc, { key, value }) => {
                                             acc[key] = value;
