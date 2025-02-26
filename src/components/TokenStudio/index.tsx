@@ -103,6 +103,7 @@ const TokenStudio = () => {
               owner: "",
               webvalidation: "",
               extraMetadata: [],
+              external_url: "",
             }}
             onSubmit={async (
               {
@@ -116,6 +117,7 @@ const TokenStudio = () => {
                 webvalidation,
                 owner,
                 extraMetadata,
+                external_url,
               },
               { resetForm },
             ) => {
@@ -201,6 +203,7 @@ const TokenStudio = () => {
                       name: name,
                       url: url,
                       description: description,
+                      external_url: external_url,
                       owner: owner,
                       webvalidate: webvalidation,
                       ...extraMetadata.reduce((acc, { key, value }) => {
@@ -365,6 +368,42 @@ const TokenStudio = () => {
                               return true;
                             }
 
+                            if (!isValidURLAll(val)) {
+                              throw new Error("Enter a valid URL");
+                            }
+
+                            return true;
+                          } catch (error) {
+                            if (error instanceof Error) {
+                              return createError({
+                                path,
+                                message: error.message,
+                              });
+                            }
+                            return createError({
+                              path,
+                              message: "Enter a valid URL",
+                            });
+                          }
+                        },
+                      )
+                  : yup.string().nullable(),
+              external_url:
+                mintOpt === "nft"
+                  ? yup
+                      .string()
+                      .trim()
+                      .test(
+                        "check-my-url",
+                        "Enter a valid URL",
+                        function (val) {
+                          const { path, createError } = this;
+
+                          if (!val) {
+                            return true;
+                          }
+
+                          try {
                             if (!isValidURLAll(val)) {
                               throw new Error("Enter a valid URL");
                             }
@@ -914,6 +953,22 @@ const TokenStudio = () => {
                                     onBlur={handleBlur}
                                     error={errors.owner}
                                     touched={touched.owner}
+                                  />
+                                )}
+
+                                {mintOpt === "nft" && (
+                                  <Input
+                                    id="external_url"
+                                    name="external_url"
+                                    type="text"
+                                    label="External url"
+                                    placeholder="Enter an external url"
+                                    value={values["external_url"]}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    error={errors.external_url}
+                                    touched={touched.external_url}
+                                    required={false}
                                   />
                                 )}
 

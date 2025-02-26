@@ -62,6 +62,19 @@ const Review = () => {
               </div>
             )}
 
+            {mintOpt !== "default" && !!values.external_url.length && (
+              <div>
+                <h3 className="text-black dark:text-grey80">External Url</h3>
+                <a
+                  className="text-black dark:text-white"
+                  href={values["external_url"]}
+                  target="_blank"
+                >
+                  {values["external_url"]}
+                </a>
+              </div>
+            )}
+
             {mintOpt !== "default" && !!values.webvalidation.length && (
               <div>
                 <h3 className="text-black dark:text-grey80">
