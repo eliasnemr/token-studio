@@ -25,3 +25,7 @@
 
 - Update copy on image upload
 - Add correct decimals to copy CLI for custom & simple tokens 
+
+##### [1.4.0] - 26 February 25
+
+- Fix bug on space error in name for simple tokens 
