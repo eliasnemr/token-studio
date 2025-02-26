@@ -136,7 +136,7 @@ const TokenStudio = () => {
                 if (mintOpt === "default") {
                   await new Promise((resolve, reject) => {
                     (window as any).MDS.cmd(
-                      `tokencreate amount:${amount} name:${name} decimals:${decimals} ${
+                      `tokencreate amount:${amount} name:"${name}" decimals:${decimals} ${
                         burn.length ? "burn:" + burn : ""
                       }`,
                       (resp: any) => {
