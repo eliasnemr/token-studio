@@ -30,3 +30,8 @@
 
 - Fix bug on space error in name for simple tokens
 - Added external_url default property for NFTs
+- 
+- ##### [1.5.0] - 27 February 25
+
+- Fix description input fields
+- Tweak text color on light mode

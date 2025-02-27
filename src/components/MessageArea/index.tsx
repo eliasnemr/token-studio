@@ -18,18 +18,22 @@ const MessageArea = ({
   // const [_f, setF] = useState(false);
 
   return (
-    <div className={`bg-grey10 dark:bg-darkContrast rounded p-4 w-full flex`}>
+    <div
+      className={`bg-grey10 dark:bg-darkContrast rounded p-4 w-full flex-col flex`}
+    >
       <textarea
         id={id}
         name={name}
         onChange={handleChange}
         onBlur={handleBlur}
         placeholder={placeholder}
-        className="bg-transparent outline-none focus:outline-none dark:placeholder:text-grey80 w-full truncate"
+        className="bg-transparent text-black dark:text-white outline-none focus:outline-none dark:placeholder:text-grey80 w-full"
         rows={5}
         value={value}
       />
-      <span className="mt-auto text-sm text-black dark:text-grey80">
+      <span
+        className={`mt-auto text-sm ${value.length === 0 ? "text-grey100" : "text-black dark:text-grey80"}  text-right`}
+      >
         {value.length + "/" + 255}
       </span>
     </div>
